@@ -6,7 +6,8 @@ class Course {
   int prog_exo;
   int prog_theory;
   int interest;
-  Course(this.name, this.repartition, this.prog_exo, this.prog_theory, this.interest) {
+  int credit;
+  Course(this.name, this.repartition, this.prog_exo, this.prog_theory, this.interest, this.credit) {
     // Code if needed.
   }
 }
@@ -41,11 +42,10 @@ class User {
   String name;
   List<Calendar> calendars;
   String passwordhash;
-  List<Course> priority;
-  List<Course> favorite;
+  List<Course> courses;
   TimeOfDay midiPause;
 
-  User(this.name, this.calendars, this.passwordhash, this.priority, this.favorite) {
+  User(this.name, this.calendars, this.passwordhash, this.courses) {
     // Code if needed.
   }
 
@@ -53,7 +53,7 @@ class User {
   //Modélisation aka temporaire
   void createCalendar(){
     var remainingCourse = new Map();
-    this.priority.forEach((cours) {
+    this.courses.forEach((cours) {
       remainingCourse[cours] = [cours.prog_exo, cours.prog_theory];
     });
     this.calendars[0].days.forEach((day) {
@@ -70,4 +70,3 @@ class User {
     });
   }
 }
-
