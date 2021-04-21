@@ -6,7 +6,8 @@ class Course {
   int prog_exo;
   int prog_theory;
   int interest;
-  Course(this.name, this.repartition, this.prog_exo, this.prog_theory, this.interest) {
+  int credit;
+  Course(this.name, this.repartition, this.prog_exo, this.prog_theory, this.interest, this.credit) {
     // Code if needed.
   }
 }
@@ -41,10 +42,9 @@ class User {
   String name;
   List<Calendar> calendars;
   String passwordhash;
-  List<Course> priority;
-  List<Course> favorite;
+  List<Course> courses;
 
-  User(this.name, this.calendars, this.passwordhash, this.priority, this.favorite) {
+  User(this.name, this.calendars, this.passwordhash, this.courses) {
     // Code if needed.
   }
 }
