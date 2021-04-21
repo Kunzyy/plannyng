@@ -43,8 +43,31 @@ class User {
   String passwordhash;
   List<Course> priority;
   List<Course> favorite;
+  TimeOfDay midiPause;
 
   User(this.name, this.calendars, this.passwordhash, this.priority, this.favorite) {
     // Code if needed.
   }
+
+
+  //Modélisation aka temporaire
+  void createCalendar(){
+    var remainingCourse = new Map();
+    this.priority.forEach((cours) {
+      remainingCourse[cours] = [cours.prog_exo, cours.prog_theory];
+    });
+    this.calendars[0].days.forEach((day) {
+      //on crée les blocs
+      //on assigne le bloc qui commence le plus proche de l'heure de midiPause à la pause de midi
+      day.blocks.forEach((bloc) {
+        //fill it
+        //Si avant la pause de midi, cours avec grand interet, sinon bas
+        //remainingCourse[cours ajouté][0] -= x pour les exo
+        //remainingCourse[cours ajouté][0] -= x pour la théorie
+        //quand tout est = 0 à c'est fini
+      });
+      //On check si tout est fini et si c'est pas le cas alors le planning n'est pas possible à faire
+    });
+  }
 }
+
