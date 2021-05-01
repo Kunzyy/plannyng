@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:plannyng/Screens/home.dart';
+import 'package:plannyng/Screens/login.dart';
 import 'package:plannyng/Screens/plannSess.dart';
 import 'package:plannyng/Screens/profile.dart';
-import 'package:plannyng/Screens/signIn.dart';
 
 // Toutes les couleurs utilisées
 
@@ -17,7 +17,7 @@ const otherColor = Color(0xff936DD7);
 const nomApp = "Plannyng";
 
 var listeDrawer = ["Accueil", "Mon Profil", "Planifier une session", "Déconnexion"];
-var listeRedirection = [Home(), Profile(), PlanSess(), SignIn()];
+var listeRedirection = [Home(), Profile(), PlanSess(), Login()];
 
 // Tous les styles de texte utilisés
 
