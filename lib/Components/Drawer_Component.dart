@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
 
+import 'package:plannyng/Constants.dart';
+
 class DrawerComponent extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    List<Widget> listTiles = [];
+
+    for (var i = 0; i < listeDrawer.length ; i ++) {
+      var tmp = ListTile(
+        title: Text(listeDrawer[i],
+          style: titreDrawer,
+        )
+      );
+      listTiles.add(tmp);
+    }
+
     return Drawer(
       child: Column(
         children: [
@@ -13,20 +27,7 @@ class DrawerComponent extends StatelessWidget {
           ),
           Expanded(
             child: ListView(
-              children: [
-                ListTile(
-                  title: Text("Accueil",
-                    style: TextStyle(
-                        fontSize: 35.0),
-                  ),
-                ),
-                ListTile(
-                  title: Text("Profil",
-                    style: TextStyle(
-                        fontSize: 35.0),
-                  ),
-                ),
-              ],
+              children: listTiles,
             ),
           )
         ],
