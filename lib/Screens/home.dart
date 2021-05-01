@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:plannyng/Components/Calendar_Component.dart';
-import 'package:plannyng/Components/Drawer_Component.dart';
+import 'package:plannyng/Components/calendarComponent.dart';
+import 'package:plannyng/Components/drawerComponent.dart';
 
 import '../Constants.dart';
 
@@ -20,7 +20,11 @@ class Home extends StatelessWidget {
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: backgroundDeco,
-        child: CalendarComponent(),
+        child: Container(
+          width: MediaQuery.of(context).size.width - 40.0,
+          height: MediaQuery.of(context).size.height - 40.0,
+          child: CalendarComponent(),
+        ),
       ),
     );
   }

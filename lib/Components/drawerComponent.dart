@@ -4,6 +4,11 @@ import 'package:plannyng/Constants.dart';
 
 class DrawerComponent extends StatelessWidget {
 
+  redirect(context, newContext) {
+    dynamic newRoute = MaterialPageRoute(builder: (context) => newContext);
+    Navigator.pushReplacement(context, newRoute);
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> listTiles = [];
