@@ -20,6 +20,7 @@ class _CalendarComponentState extends State<CalendarComponent> {
       firstDay: kFirstDay,
       lastDay: kLastDay,
       focusedDay: _focusedDay,
+      locale: 'fr_FR',
 
       selectedDayPredicate: (day) {
         return isSameDay(_selectedDay, day);

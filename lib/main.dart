@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'Screens/home.dart';
 import 'Screens/login.dart';
 
-void main() => runApp(Plannyng());
+void main() {
+  initializeDateFormatting().then((_) => runApp(Plannyng()));
+}
 
 bool connected = true;
 
