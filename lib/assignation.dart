@@ -7,7 +7,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
   List<int> toassign;
   bool warning = false;
   //On regarde le nombre d'heure à assigner par cours
-  for(var i; i <= user.courses.length; i++){
+  for(var i = 0; i <= user.courses.length; i++){
     if (user.prog[i].time_left > avtime){
       //Horaire impossible
       toassign.add(avtime);
@@ -18,6 +18,16 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
       //Possible, on décompte du temps dispo et on rajoute dans la liste
       toassign.add(user.prog[i].time_left);
       avtime -= user.prog[i].time_left;
+    }
+  }
+  for(var i = 0; i <= duration; i++){
+    DateTime actualday = beginning.add(Duration(days: i));
+    DateTime tmpbegin = new DateTime(actualday.year, actualday.month, actualday.day, settings.start.hour, settings.start.minute);
+    while(tmpbegin.hour < settings.finish.hour){
+      DateTime tmpend = tmpbegin.add(Duration(minutes: settings.durcourse));
+      Block tmp = Block(tmpbegin, tmpend);
+      user.plannyng.add(tmp);
+      tmpbegin = tmpend.add(Duration(minutes: settings.durbreak));
     }
   }
   //Pour chaque jour, on remplit d'event sans se soucier du cours

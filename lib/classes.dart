@@ -31,7 +31,7 @@ class Block {
   DateTime start;
   DateTime finish;
   Color background;
-  Block(this.course, this.start, this.finish, this.background) {
+  Block(this.start, this.finish, [this.course, this.background]) {
     // Code if needed.
   }
 }
@@ -53,4 +53,6 @@ class Settings {
   int hourperday;
   TimeOfDay start;
   TimeOfDay finish;
+  int durcourse;
+  int durbreak;
 }
