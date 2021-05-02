@@ -19,6 +19,13 @@ const nomApp = "Plannyng";
 var listeDrawer = ["Accueil", "Mon Profil", "Planifier une session", "Déconnexion"];
 var listeRedirection = [Home(), Profile(), PlanSess(), Login()];
 
+const formMail = "Entrez votre email";
+const formErrorMail = "Vous n'avez pas inséré votre email !";
+const formMDP = "Entrez votre mot de passe";
+const formErrorMDP = "Vous n'avez pas inséré votre mot de passe !";
+const formValMDP = "Entrez une deuxième fois votre mot de passe";
+const formErrorValMDP = "Vous n'avez pas inséré une deuxième fois votre mot de passe !";
+
 // Tous les styles de texte utilisés
 
 const titreStyle = TextStyle();
