@@ -27,8 +27,14 @@ class DrawerComponent extends StatelessWidget {
       child: Column(
         children: [
           DrawerHeader(
-            child: Container(
-              child : Text("Nom de l'utilisateur")
+            child: ListView(
+              children : [
+                Text(valeursProfil[0]),
+                Text(valeursProfil[2]),
+                Text(valeursProfil[3]),
+                Text(valeursProfil[4]),
+
+              ],
             ),
           ),
           Expanded(

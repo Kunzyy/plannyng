@@ -7,6 +7,12 @@ class Course {
   Course(this.name, this.repartition, this.hours) {
     // Code if needed.
   }
+  stringRepartition() {
+    return repartition.toString() + "% Théorie et " + (100-repartition).toString() + "% Exercices + TPs";
+  }
+  stringHours() {
+    return hours.toString() + " heures d'études prévues";
+  }
 }
 
 class Progression {

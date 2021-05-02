@@ -31,6 +31,7 @@ dependencies:
   flutter_svg_provider: ^0.1.8
   intl: ^0.17.0
   syncfusion_flutter_calendar: ^19.1.58
+  google_fonts: ^2.0.0
 
 dev_dependencies:
   flutter_test:
