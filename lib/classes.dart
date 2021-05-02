@@ -3,13 +3,20 @@ import 'package:flutter/material.dart';
 class Course {
   String name;
   int repartition;
+  int hours;
+  Course(this.name, this.repartition, this.hours) {
+    // Code if needed.
+  }
+}
+
+class Progression {
+  String name;
+  int time_left;
   int prog_exo;
   int prog_theory;
   int interest;
-  int credit;
-  int hours;
-  Course(this.name, this.repartition, this.prog_exo, this.prog_theory, this.interest, this.credit, this.hours) {
-    // Code if needed.
+  Progression(this.name, this.time_left, this.prog_exo, this.prog_theory, this.interest){
+    //
   }
 }
 
@@ -27,6 +34,7 @@ class User {
   String name;
   String passwordhash;
   List<Course> courses;
+  List<Progression> prog;
   List<Block> plannyng;
   TimeOfDay midiPause;
 
@@ -37,4 +45,6 @@ class User {
 
 class Settings {
   int hourperday;
+  TimeOfDay start;
+  TimeOfDay finish;
 }
