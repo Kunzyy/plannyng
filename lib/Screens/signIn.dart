@@ -25,67 +25,96 @@ class SignIn extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: formMail,
-                      focusedBorder:OutlineInputBorder(
-                        borderSide: const BorderSide(color: primaryColor),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: formNom,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: primaryColor),
+                        ),
                       ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return formErrorNom;
+                        }
+                        return null;
+                      },
                     ),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return formErrorMail;
-                      }
-                      return null;
-                    },
                   ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: formMDP,
-                      focusedBorder:OutlineInputBorder(
-                        borderSide: const BorderSide(color: primaryColor),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: formMail,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: primaryColor),
+                        ),
                       ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return formErrorMail;
+                        }
+                        return null;
+                      },
                     ),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return formErrorMDP;
-                      }
-                      return null;
-                    },
                   ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: formValMDP,
-                      focusedBorder:OutlineInputBorder(
-                        borderSide: const BorderSide(color: primaryColor),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: formMDP,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: primaryColor),
+                        ),
                       ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return formErrorMDP;
+                        }
+                        return null;
+                      },
                     ),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return formErrorValMDP;
-                      }
-                      return null;
-                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: formValMDP,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: primaryColor),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return formErrorValMDP;
+                        }
+                        return null;
+                      },
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(primaryColor),
+                    child: Center(
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(primaryColor),
+                        ),
+                        onPressed: () {
+                          // Validate will return true if the form is valid, or false if
+                          // the form is invalid.
+                          if (_formKey.currentState.validate()) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                // Process data.
+                                content: Text("Traitement des données")));
+                            dynamic newRoute =
+                                MaterialPageRoute(builder: (context) => Home());
+                            Navigator.pushReplacement(context, newRoute);
+                          }
+                        },
+                        child: Text("M'inscrire !"),
                       ),
-                      onPressed: () {
-                        // Validate will return true if the form is valid, or false if
-                        // the form is invalid.
-                        if (_formKey.currentState.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            // Process data.
-                              content: Text(
-                                  "Traitement des données")));
-                          dynamic newRoute = MaterialPageRoute(builder: (context) => Home());
-                          Navigator.pushReplacement(context, newRoute);
-                        }
-                      },
-                      child: Text("M'inscrire !"),
                     ),
                   ),
                 ],
@@ -97,7 +126,8 @@ class SignIn extends StatelessWidget {
                   Text("Vous avez déjà un compte ?"),
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(primaryColor),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(primaryColor),
                     ),
                     onPressed: () {
                       dynamic newRoute =
