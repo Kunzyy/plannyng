@@ -22,8 +22,8 @@ class Progression {
 
 class Block {
   Course course;
-  TimeOfDay start;
-  TimeOfDay finish;
+  DateTime start;
+  DateTime finish;
   Color background;
   Block(this.course, this.start, this.finish, this.background) {
     // Code if needed.

@@ -16,9 +16,6 @@ const otherColor = Color(0xff936DD7);
 
 const nomApp = "Plannyng";
 
-var listeDrawer = ["Accueil", "Mon Profil", "Planifier une session", "Déconnexion"];
-var listeRedirection = [Home(), Profile(), PlanSess(), Login()];
-
 const formMail = "Entrez votre email";
 const formErrorMail = "Vous n'avez pas inséré votre email !";
 const formMDP = "Entrez votre mot de passe";
@@ -51,3 +48,10 @@ const backgroundDeco = BoxDecoration(
 
 final kFirstDay = DateTime.utc(2015, 01, 01);
 final kLastDay = DateTime.utc(2040, 12, 31);
+
+const listeDrawer = ["Accueil", "Mon Profil", "Planifier une session", "Déconnexion"];
+var listeRedirection = [Home(), Profile(), PlanSess(), Login()];
+
+var listeCours = ["Analyse 2", "Algèbre 2", "Mecara Q2", "Physique Q2", "Chimie Orga", "Info", "Envi", "Ecopol", "Anglais"];
+var heuresCours = [28, 20, 20, 28, 21, 5, 7, 5, 5];
+var repartCours = [50, 50, 30, 50, 65, 50, 67, 100, 100];

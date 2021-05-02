@@ -16,13 +16,13 @@ class StudySessionSource extends CalendarDataSource {
 
   @override
   DateTime getStartTime(int index) {
-    DateTime startT = DateTime(2021, 5, 2, appointments[index].start.hour, appointments[index].start.minute);
+    DateTime startT = DateTime(appointments[index].start.year, appointments[index].start.month, appointments[index].start.day, appointments[index].start.hour, appointments[index].start.minute);
     return startT;
   }
 
   @override
   DateTime getEndTime(int index) {
-    DateTime endT = DateTime(2021, 5, 2, appointments[index].finish.hour, appointments[index].finish.minute);
+    DateTime endT = DateTime(appointments[index].finish.year, appointments[index].finish.month, appointments[index].finish.day, appointments[index].finish.hour, appointments[index].finish.minute);
     return endT;
   }
 
@@ -33,16 +33,22 @@ class StudySessionSource extends CalendarDataSource {
 }
 
 
+
 List<Block> _getDataSource() {
-  final List<Block> meetings = <Block>[];
-  final TimeOfDay startTime = TimeOfDay(hour: 15, minute: 0);
-  final TimeOfDay endTime = TimeOfDay(hour: 17, minute: 0);
-  final Course course1 = Course("course1", 4, 15);
-  final Course course2 = Course("course2", 4, 15);
+  List<Block> meetings = <Block>[];
+
+  DateTime startTime1 = DateTime.utc(2021, 5, 4, 15, 30);
+  DateTime endTime1 = DateTime.utc(2021, 5, 4, 17, 30);
+
+  DateTime startTime2 = DateTime.utc(2021, 6, 4, 17, 30);
+  DateTime endTime2 = DateTime.utc(2021, 6, 4, 19, 30);
+
+  Course course1 = Course("2", 4, 15);
+  Course course2 = Course("4", 4, 15);
   meetings.add(
-      Block(course1, startTime, endTime, secondaryColor));
+      Block(course1, startTime1, endTime1, secondaryColor));
   meetings.add(
-      Block(course2, startTime, endTime, otherColor));
+      Block(course2, startTime2, endTime2, otherColor));
   return meetings;
 }
 
@@ -51,9 +57,11 @@ class CalendarComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SfCalendar(
       view: CalendarView.month,
+
       firstDayOfWeek: 1,
       dataSource: StudySessionSource(_getDataSource()),
       monthViewSettings: MonthViewSettings(
+          showAgenda: true,
           appointmentDisplayMode: MonthAppointmentDisplayMode.appointment),
     );
   }

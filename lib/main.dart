@@ -3,12 +3,23 @@ import 'package:intl/date_symbol_data_local.dart';
 
 import 'Screens/home.dart';
 import 'Screens/login.dart';
+import 'package:plannyng/Constants.dart';
+import 'classes.dart';
+
+bool connected = true;
+
+
 
 void main() {
+  var coursList = [];
+  for (var i = 0; i < listeCours.length ; i ++) {
+    Course tmp = Course(listeCours[i], heuresCours[i], repartCours[i]);
+    coursList.add(tmp);
+  }
+  User user = User("Agathe Moineau", "Password", coursList);
   initializeDateFormatting().then((_) => runApp(Plannyng()));
 }
 
-bool connected = true;
 
 class Plannyng extends StatefulWidget {
   @override
@@ -24,3 +35,5 @@ class _PlannyngState extends State<Plannyng> {
     );
   }
 }
+
+
