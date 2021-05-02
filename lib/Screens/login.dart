@@ -28,6 +28,9 @@ class Login extends StatelessWidget {
                   TextFormField(
                     decoration: const InputDecoration(
                       hintText: formMail,
+                      focusedBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: primaryColor),
+                      ),
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
@@ -39,6 +42,9 @@ class Login extends StatelessWidget {
                   TextFormField(
                     decoration: const InputDecoration(
                       hintText: formMDP,
+                      focusedBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: primaryColor),
+                      ),
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
@@ -50,6 +56,9 @@ class Login extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(primaryColor),
+                      ),
                       onPressed: () {
                         // Validate will return true if the form is valid, or false if
                         // the form is invalid.
@@ -74,6 +83,9 @@ class Login extends StatelessWidget {
                 children: <Widget>[
                   Text("Vous n'avez pas encore de compte ?"),
                   ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(primaryColor),
+                    ),
                     onPressed: () {
                       dynamic newRoute = MaterialPageRoute(builder: (context) => SignIn());
                       Navigator.pushReplacement(context, newRoute);

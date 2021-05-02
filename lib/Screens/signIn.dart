@@ -28,6 +28,9 @@ class SignIn extends StatelessWidget {
                   TextFormField(
                     decoration: const InputDecoration(
                       hintText: formMail,
+                      focusedBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: primaryColor),
+                      ),
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
@@ -39,6 +42,9 @@ class SignIn extends StatelessWidget {
                   TextFormField(
                     decoration: const InputDecoration(
                       hintText: formMDP,
+                      focusedBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: primaryColor),
+                      ),
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
@@ -50,6 +56,9 @@ class SignIn extends StatelessWidget {
                   TextFormField(
                     decoration: const InputDecoration(
                       hintText: formValMDP,
+                      focusedBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: primaryColor),
+                      ),
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
@@ -61,6 +70,9 @@ class SignIn extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(primaryColor),
+                      ),
                       onPressed: () {
                         // Validate will return true if the form is valid, or false if
                         // the form is invalid.
@@ -84,6 +96,9 @@ class SignIn extends StatelessWidget {
                 children: <Widget>[
                   Text("Vous avez déjà un compte ?"),
                   ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(primaryColor),
+                    ),
                     onPressed: () {
                       dynamic newRoute =
                           MaterialPageRoute(builder: (context) => Login());
