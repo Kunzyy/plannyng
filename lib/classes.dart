@@ -47,6 +47,18 @@ class User {
   User(this.name, this.passwordhash, this.courses) {
     // Code if needed.
   }
+
+  listeStrings() {
+    List<String> listeStringHeures = [];
+    List<String> listeStringRepart = [];
+
+    for (var i = 0; i < courses.length; i++) {
+      listeStringHeures.add(courses[i].stringHours());
+      listeStringRepart.add(courses[i].stringRepartition());
+    }
+
+    return [listeStringHeures, listeStringRepart];
+  }
 }
 
 class Settings {

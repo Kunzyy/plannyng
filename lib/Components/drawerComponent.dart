@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:plannyng/Constants.dart';
+import 'package:plannyng/main.dart';
 
 class DrawerComponent extends StatelessWidget {
-
-  redirect(context, newContext) {
-    dynamic newRoute = MaterialPageRoute(builder: (context) => newContext);
-    Navigator.pushReplacement(context, newRoute);
-  }
-
   @override
   Widget build(BuildContext context) {
     List<Widget> listTiles = [];

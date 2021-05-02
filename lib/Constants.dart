@@ -29,11 +29,17 @@ const formErrorValMDP = "Mot de passe erroné";
 const formNom = "Nom";
 const formErrorNom = "Veuillez insérer votre nom";
 
+const buttonEditProfile = "Modifier mon profil";
+
 // Tous les styles de texte utilisés
 
 var titreStyle = GoogleFonts.roboto();
 
 var titreEvent = GoogleFonts.roboto();
+
+var titreButton = GoogleFonts.roboto(
+    fontSize: 17.0
+);
 
 var titreDrawer = GoogleFonts.roboto(
     fontSize: 25.0
@@ -60,6 +66,18 @@ const backgroundDeco = BoxDecoration(
 
 const paddingCard = EdgeInsets.all(8.0);
 
+var appTheme = ThemeData(
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      primary: secondaryColor,
+      textStyle: titreButton,
+      minimumSize: Size(250,75),
+      maximumSize: Size(250,75),
+
+    )
+  )
+);
+
 // Autres
 
 final kFirstDay = DateTime.utc(2015, 01, 01);
@@ -71,7 +89,6 @@ var listeRedirection = [Home(), Profile(), PlanSess(), Login()];
 var listeCours = ["Analyse 2", "Algèbre 2", "Mecara Q2", "Physique Q2", "Chimie Orga", "Info", "Envi", "Ecopol", "Anglais"];
 var heuresCours = [28, 20, 20, 28, 21, 5, 7, 5, 5];
 var repartCours = [50, 50, 30, 50, 65, 50, 67, 100, 100];
-
 
 var valeursProfil = ["Agathe Moineau", "Umons", "Faculté Polytechnique de Mons", "Ingénieur civil orientation générale", "BA1" ];
 var etiquettesProfil = ["Etablissement", "Faculté", "Cursus", "Année d'étude"];

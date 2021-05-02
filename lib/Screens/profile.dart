@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'package:plannyng/Components/drawerComponent.dart';
+import 'package:plannyng/Screens/editProfile.dart';
 
 import '../Constants.dart';
+import 'package:plannyng/database.dart';
+import 'package:plannyng/main.dart';
 
 
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<String> listeStringHeures = [];
-    List<String> listeStringRepart = [];
 
-    for (var i = 0; i < user.courses.length; i++) {
-      listeStringHeures.add()
-    }
-
-    for (var i = 0; i < repartCours.length; i++) {
-
-    }
-
+    List<List> listes = getUser().listeStrings();
 
     List<Widget> createCard(String titre, List<String> listeEtiquette, List<String> listeValeur1, [List<String> listeValeur2, List<String> listeValeur3]) {
       List<Widget> listeWidget = [];
@@ -52,8 +46,7 @@ class Profile extends StatelessWidget {
       }
       return listeWidget;
     }
-    
-    
+
     return Scaffold(
       drawer: DrawerComponent(),
       appBar: AppBar(
@@ -71,7 +64,7 @@ class Profile extends StatelessWidget {
           children: [
             Card(
               child: Padding(
-                padding: EdgeInsets.all(30.0),
+                padding: EdgeInsets.all(8.0),
                 child: Column(
                   children: createCard(valeursProfil[0], etiquettesProfil, valeursProfil.sublist(1)),
                 )
@@ -79,12 +72,19 @@ class Profile extends StatelessWidget {
             ),
             Card(
               child: Padding(
-                padding: EdgeInsets.all(30.0),
+                padding: EdgeInsets.all(8.0),
                 child: Column(
-                  children: createCard("Mes cours", listeCours, heuresCours),
+                  children: createCard("Mes cours", listeCours, listes[0]),
                 ),
               ),
             ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Center(
+                child: ElevatedButton(onPressed: () => redirect(context, EditProfile()),
+                    child: Text(buttonEditProfile)),
+              ),
+            )
           ],
 
         ),
