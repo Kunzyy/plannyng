@@ -11,17 +11,19 @@ class StudySessionSource extends CalendarDataSource {
 
   @override
   String getSubject(int index) {
-    return appointments[index].course;
+    return appointments[index].course.name;
   }
 
   @override
   DateTime getStartTime(int index) {
-    return appointments[index].start;
+    DateTime startT = DateTime(2021, 5, 2, appointments[index].start.hour, appointments[index].start.minute);
+    return startT;
   }
 
   @override
   DateTime getEndTime(int index) {
-    return appointments[index].finish;
+    DateTime endT = DateTime(2021, 5, 2, appointments[index].finish.hour, appointments[index].finish.minute);
+    return endT;
   }
 
   @override
@@ -31,13 +33,29 @@ class StudySessionSource extends CalendarDataSource {
 }
 
 
+List<Block> _getDataSource() {
+  final List<Block> meetings = <Block>[];
+  final TimeOfDay startTime = TimeOfDay(hour: 15, minute: 0);
+  final TimeOfDay endTime = TimeOfDay(hour: 17, minute: 0);
+  final Course course1 = Course("course1", 4, 15);
+  final Course course2 = Course("course2", 4, 15);
+  meetings.add(
+      Block(course1, startTime, endTime, secondaryColor));
+  meetings.add(
+      Block(course2, startTime, endTime, otherColor));
+  return meetings;
+}
+
 class CalendarComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SfCalendar(
       view: CalendarView.month,
       firstDayOfWeek: 1,
+      dataSource: StudySessionSource(_getDataSource()),
+      monthViewSettings: MonthViewSettings(
+          appointmentDisplayMode: MonthAppointmentDisplayMode.appointment),
     );
   }
-
 }
+
