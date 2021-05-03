@@ -3,25 +3,27 @@ import 'package:flutter/material.dart';
 class Course {
   String name;
   int repartition;
-  int hours;
-  Course(this.name, this.repartition, this.hours) {
+  int hours_exo;
+  int hours_theory;
+  Course(this.name, this.hours_exo, this.hours_theory) {
     // Code if needed.
   }
   stringRepartition() {
     return repartition.toString() + "% Théorie et " + (100-repartition).toString() + "% Exercices + TPs";
   }
   stringHours() {
-    return hours.toString() + " heures d'études prévues";
+    return (hours_exo + hours_theory).toString() + " heures d'études prévues";
   }
 }
 
 class Progression {
-  String name;
-  int time_left;
+  Course course;
+  int time_left_exo;
+  int time_left_theory;
   int prog_exo;
   int prog_theory;
   int interest;
-  Progression(this.name, this.time_left, this.prog_exo, this.prog_theory, this.interest){
+  Progression(this.course, [this.time_left_exo, this.time_left_theory, this.prog_exo, this.prog_theory, this.interest]){
     //
   }
 }
@@ -31,7 +33,9 @@ class Block {
   DateTime start;
   DateTime finish;
   Color background;
-  Block(this.start, this.finish, [this.course, this.background]) {
+  bool exo;
+  bool done;
+  Block(this.start, this.finish, [this.course, this.background, this.exo]) {
     // Code if needed.
   }
 }
@@ -39,12 +43,10 @@ class Block {
 class User {
   String name;
   String passwordhash;
-  List<Course> courses;
   List<Progression> prog;
   List<Block> plannyng;
-  TimeOfDay midiPause;
 
-  User(this.name, this.passwordhash, this.courses) {
+  User(this.name, this.passwordhash, this.prog) {
     // Code if needed.
   }
 
@@ -52,9 +54,9 @@ class User {
     List<String> listeStringHeures = [];
     List<String> listeStringRepart = [];
 
-    for (var i = 0; i < courses.length; i++) {
-      listeStringHeures.add(courses[i].stringHours());
-      listeStringRepart.add(courses[i].stringRepartition());
+    for (var i = 0; i < prog.length; i++) {
+      listeStringHeures.add(prog[i].course.stringHours());
+      listeStringRepart.add(prog[i].course.stringRepartition());
     }
 
     return [listeStringHeures, listeStringRepart];
