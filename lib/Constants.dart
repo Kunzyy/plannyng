@@ -73,7 +73,6 @@ var appTheme = ThemeData(
       primary: secondaryColor,
       textStyle: titreButton,
       minimumSize: Size(250,75),
-      maximumSize: Size(250,75),
     )
   )
 );

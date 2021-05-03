@@ -46,9 +46,9 @@ List<Block> _getDataSource() {
   Course course1 = Course("2", 4, 15);
   Course course2 = Course("4", 4, 15);
   meetings.add(
-      Block(course1, startTime1, endTime1, secondaryColor));
+      Block(startTime1, endTime1, course1, secondaryColor));
   meetings.add(
-      Block(course2, startTime2, endTime2, otherColor));
+      Block(startTime2, endTime2, course2, otherColor));
   return meetings;
 }
 
