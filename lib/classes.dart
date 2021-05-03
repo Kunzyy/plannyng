@@ -65,6 +65,8 @@ class Settings {
   int hourperday;
   TimeOfDay start;
   TimeOfDay finish;
-  int durcourse;
+  int nbrbreak;
   int durbreak;
+  TimeOfDay lunchbegin;
+  TimeOfDay lunchend;
 }
