@@ -37,18 +37,6 @@ class StudySessionSource extends CalendarDataSource {
 List<Block> _getDataSource() {
   List<Block> meetings = <Block>[];
 
-  DateTime startTime1 = DateTime.utc(2021, 5, 4, 15, 30);
-  DateTime endTime1 = DateTime.utc(2021, 5, 4, 17, 30);
-
-  DateTime startTime2 = DateTime.utc(2021, 6, 4, 17, 30);
-  DateTime endTime2 = DateTime.utc(2021, 6, 4, 19, 30);
-
-  Course course1 = Course("2", 4, 15);
-  Course course2 = Course("4", 4, 15);
-  meetings.add(
-      Block(startTime1, endTime1, course1, secondaryColor));
-  meetings.add(
-      Block(startTime2, endTime2, course2, otherColor));
   return meetings;
 }
 

@@ -23,11 +23,6 @@ class PlanSess extends StatelessWidget {
         decoration: backgroundDeco,
         child: Form(
           child: Column(
-            children: [
-              Card(
-                child: Text("Merci de choisir les dates de début et fin du blocus"),
-              ),
-            ],
 
           ),
         ),
@@ -36,5 +31,4 @@ class PlanSess extends StatelessWidget {
       ),
     );  }
 }
-
 
