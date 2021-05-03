@@ -5,7 +5,7 @@ class Course {
   int repartition;
   int hours_exo;
   int hours_theory;
-  Course(this.name, this.hours_exo, this.hours_theory) {
+  Course(this.name, this.repartition, this.hours_exo, this.hours_theory) {
     // Code if needed.
   }
   stringRepartition() {
