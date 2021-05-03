@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:plannyng/database_helper.dart';
 
 import '../Constants.dart';
 
 import 'login.dart';
 import 'home.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
+  @override
+  _SignInState createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
+  final dbHelper = DatabaseHelper.instance;
+
+  String nom = '';
+  String mail = '';
+  String password = '';
+  String valPassword = '';
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +49,7 @@ class SignIn extends StatelessWidget {
                               borderSide: const BorderSide(color: primaryColor),
                             ),
                           ),
+                          onSaved: (value) => setState(() => nom = value),
                           validator: (value) {
                             if (value.isEmpty) {
                               return formErrorNom;
@@ -54,6 +67,7 @@ class SignIn extends StatelessWidget {
                               borderSide: const BorderSide(color: primaryColor),
                             ),
                           ),
+                          onSaved: (value) => setState(() => mail = value),
                           validator: (value) {
                             if (value.isEmpty) {
                               return formErrorMail;
@@ -71,6 +85,9 @@ class SignIn extends StatelessWidget {
                               borderSide: const BorderSide(color: primaryColor),
                             ),
                           ),
+                          onChanged: (value) =>
+                              setState(() => password = value),
+                          onSaved: (value) => setState(() => password = value),
                           validator: (value) {
                             if (value.isEmpty) {
                               return formErrorMDP;
@@ -88,11 +105,19 @@ class SignIn extends StatelessWidget {
                               borderSide: const BorderSide(color: primaryColor),
                             ),
                           ),
+                          onChanged: (value) =>
+                              setState(() => valPassword = value),
                           validator: (value) {
                             if (value.isEmpty) {
                               return formErrorValMDP;
                             }
-                            return null;
+                            else {
+                              if (password != valPassword) {
+                                return formDiffMDP;
+                              }
+                              else
+                                return null;
+                            }
                           },
                         ),
                       ),
@@ -110,9 +135,11 @@ class SignIn extends StatelessWidget {
                               if (_formKey.currentState.validate()) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                        // Process data.
+                                      // Process data.
                                         content:
-                                            Text("Traitement des données")));
+                                        Text("Traitement des données")));
+                                _formKey.currentState.save(); // Sauvegarde de l'état des champs
+                                _insertUser();
                                 dynamic newRoute = MaterialPageRoute(
                                     builder: (context) => Home());
                                 Navigator.pushReplacement(context, newRoute);
@@ -153,5 +180,16 @@ class SignIn extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _insertUser() async {
+    // row to insert
+    Map<String, dynamic> row = {
+      DatabaseHelper.columnName : nom,
+      DatabaseHelper.columnMail : mail,
+      DatabaseHelper.columnPassword: password
+    };
+    final id = await dbHelper.insert(row);
+    print('inserted row id: $id');
   }
 }

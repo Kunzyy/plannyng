@@ -1,12 +1,13 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=C:\Program Files\flutter
-FLUTTER_APPLICATION_PATH=C:\Users\margo\AndroidStudioProjects\plannyng
-FLUTTER_TARGET=lib\main.dart
+FLUTTER_ROOT=/Users/Nicolas/flutter
+FLUTTER_APPLICATION_PATH=/Users/Nicolas/plannyng
+FLUTTER_TARGET=/Users/Nicolas/plannyng/lib/main.dart
 FLUTTER_BUILD_DIR=build
-SYMROOT=${SOURCE_ROOT}/../build\ios
+SYMROOT=${SOURCE_ROOT}/../build/ios
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1
+DART_DEFINES=flutter.inspector.structuredErrors%3Dtrue
 DART_OBFUSCATION=false
-TRACK_WIDGET_CREATION=false
+TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false
-PACKAGE_CONFIG=.packages
+PACKAGE_CONFIG=/Users/Nicolas/plannyng/.dart_tool/package_config.json

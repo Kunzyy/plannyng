@@ -25,6 +25,7 @@ const formErrorMail = "Veuillez insérer votre email";
 const formMDP = "Mot de passe";
 const formErrorMDP = "Veuillez insérer votre mot de passe";
 const formValMDP = "Vérification de votre mot de passe";
+const formDiffMDP = "Les mots de passe ne correspondent pas";
 const formErrorValMDP = "Mot de passe erroné";
 const formNom = "Nom";
 const formErrorNom = "Veuillez insérer votre nom";
@@ -73,7 +74,6 @@ var appTheme = ThemeData(
       textStyle: titreButton,
       minimumSize: Size(250,75),
       maximumSize: Size(250,75),
-
     )
   )
 );
@@ -93,3 +93,5 @@ var repartCours = [50, 50, 30, 50, 65, 50, 67, 100, 100];
 var valeursProfil = ["Agathe Moineau", "Umons", "Faculté Polytechnique de Mons", "Ingénieur civil orientation générale", "BA1" ];
 var etiquettesProfil = ["Etablissement", "Faculté", "Cursus", "Année d'étude"];
 
+//Variables de session
+var idLoggedIn;

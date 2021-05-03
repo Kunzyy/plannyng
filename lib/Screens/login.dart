@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:plannyng/database_helper.dart';
 
 import '../Constants.dart';
 
 import 'signIn.dart';
 import 'home.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final dbHelper = DatabaseHelper.instance;
   final _formKey = GlobalKey<FormState>();
+
+  String mail = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +47,7 @@ class Login extends StatelessWidget {
                               borderSide: const BorderSide(color: primaryColor),
                             ),
                           ),
+                          onSaved: (value) => setState(() => mail = value),
                           validator: (value) {
                             if (value.isEmpty) {
                               return formErrorMail;
@@ -54,6 +65,7 @@ class Login extends StatelessWidget {
                               borderSide: const BorderSide(color: primaryColor),
                             ),
                           ),
+                          onSaved: (value) => setState(() => password = value),
                           validator: (value) {
                             if (value.isEmpty) {
                               return formErrorMDP;
@@ -70,18 +82,31 @@ class Login extends StatelessWidget {
                               backgroundColor: MaterialStateProperty.all<Color>(
                                   primaryColor),
                             ),
-                            onPressed: () {
+                            onPressed: () async { //Le async est là parce qu'on attend une réponse de la fonction _loginUser()
                               // Validate will return true if the form is valid, or false if
                               // the form is invalid.
                               if (_formKey.currentState.validate()) {
-                                // Process data.
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                         content:
-                                            Text("Vérification en cours")));
-                                dynamic newRoute = MaterialPageRoute(
-                                    builder: (context) => Home());
-                                Navigator.pushReplacement(context, newRoute);
+                                        Text("Vérification en cours")));
+                                // Process data.
+                                _formKey.currentState.save(); //Sauvegarde de l'état des champs
+                                final id = await _loginUser();
+                                print(id);
+                                if(id != null){
+                                  idLoggedIn = id;
+                                  dynamic newRoute = MaterialPageRoute(
+                                      builder: (context) => Home());
+                                  Navigator.pushReplacement(context, newRoute);
+                                }
+                                else{
+                                  print("Access denied");
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content:
+                                          Text("Accès réfusé")));
+                                }
                               }
                             },
                             child: Text("Me connecter"),
@@ -119,5 +144,18 @@ class Login extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  //On peut se login et on récupère notre id qui nous sert durant toute la session connectée
+
+  Future<int> _loginUser() async {
+    // row to insert
+    Map<String, dynamic> row = {
+      DatabaseHelper.columnMail : mail,
+      DatabaseHelper.columnPassword: password
+    };
+    final id = await dbHelper.login(row);
+    print('inserted row id: $id');
+    return id;
   }
 }
