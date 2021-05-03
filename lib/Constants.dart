@@ -86,7 +86,8 @@ const listeDrawer = ["Accueil", "Mon Profil", "Planifier une session", "Déconne
 var listeRedirection = [Home(), Profile(), PlanSess(), Login()];
 
 var listeCours = ["Analyse 2", "Algèbre 2", "Mecara Q2", "Physique Q2", "Chimie Orga", "Info", "Envi", "Ecopol", "Anglais"];
-var heuresCours = [28, 20, 20, 28, 21, 5, 7, 5, 5];
+var heuresCoursTheory = [14, 10, 14, 14, 14, 3, 5, 5, 5];
+var heuresCoursExo= [14, 10, 6, 14, 7, 2, 2, 0, 0];
 var repartCours = [50, 50, 30, 50, 65, 50, 67, 100, 100];
 
 var valeursProfil = ["Agathe Moineau", "Umons", "Faculté Polytechnique de Mons", "Ingénieur civil orientation générale", "BA1" ];
