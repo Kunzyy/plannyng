@@ -8,9 +8,14 @@ import 'classes.dart';
 
 bool connected = true;
 
-redirect(context, newContext) {
+redirect(context, newContext, [bool replacement]) {
   dynamic newRoute = MaterialPageRoute(builder: (context) => newContext);
-  Navigator.push(context, newRoute);
+  if (replacement == false) {
+    Navigator.push(context, newRoute);
+  }
+  else {
+    Navigator.pushReplacement(context, newRoute);
+  }
 }
 
 void main() {

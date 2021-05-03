@@ -72,7 +72,7 @@ var appTheme = ThemeData(
     style: ElevatedButton.styleFrom(
       primary: secondaryColor,
       textStyle: titreButton,
-      minimumSize: Size(250,75),
+      minimumSize: Size(150,50),
     )
   )
 );

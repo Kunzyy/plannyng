@@ -13,7 +13,7 @@ class DrawerComponent extends StatelessWidget {
         title: Text(listeDrawer[i],
           style: titreDrawer,
         ),
-        onTap: () => redirect(context, listeRedirection[i]),
+        onTap: () => redirect(context, listeRedirection[i], true),
       );
       listTiles.add(tmp);
     }

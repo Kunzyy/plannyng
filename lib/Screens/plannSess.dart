@@ -21,6 +21,9 @@ class PlanSess extends StatelessWidget {
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: backgroundDeco,
+        child: Column(
+
+        ),
 
 
       ),

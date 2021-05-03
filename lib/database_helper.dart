@@ -55,8 +55,6 @@ class DatabaseHelper {
   static final columnIdProg = 'id_prog';
   static final color = 'color';
 
-
-
   // make this a singleton class
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
