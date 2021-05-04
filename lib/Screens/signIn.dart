@@ -43,9 +43,7 @@ class _SignInState extends State<SignIn> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
-                          keyboardType: TextInputType.text,
                           decoration: const InputDecoration(
-                            icon: Icon(Icons.person),
                             hintText: formNom,
                             focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: primaryColor),
@@ -63,9 +61,7 @@ class _SignInState extends State<SignIn> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
-                          keyboardType: TextInputType.text,
                           decoration: const InputDecoration(
-                            icon: Icon(Icons.email),
                             hintText: formMail,
                             focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: primaryColor),
@@ -83,10 +79,8 @@ class _SignInState extends State<SignIn> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
-                          keyboardType: TextInputType.text,
                           obscureText: true,
                           decoration: const InputDecoration(
-                            icon: Icon(Icons.lock),
                             hintText: formMDP,
                             focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: primaryColor),
@@ -106,10 +100,8 @@ class _SignInState extends State<SignIn> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
-                          keyboardType: TextInputType.text,
                           obscureText: true,
                           decoration: const InputDecoration(
-                            icon: Icon(Icons.lock),
                             hintText: formValMDP,
                             focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: primaryColor),
