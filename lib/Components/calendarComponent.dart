@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import 'package:plannyng/classes.dart';
+import 'package:plannyng/Constants.dart';
+import 'package:plannyng/Screens/eventPage.dart';
 
 class StudySessionSource extends CalendarDataSource {
   StudySessionSource(List<Block> source) {
@@ -36,15 +38,29 @@ class StudySessionSource extends CalendarDataSource {
 List<Block> _getDataSource() {
   List<Block> meetings = <Block>[];
 
+  final course1 = Course("course1", 2, 15, 3);
+  final block1 = Block(DateTime(2021,5,4,15),DateTime(2021,5,4,17),course1,secondaryColor, true);
+
+  meetings.add(block1);
+
   return meetings;
 }
 
 class CalendarComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    void calendarTapped(CalendarTapDetails calendarTapDetails) {
+      if (calendarTapDetails.targetElement == CalendarElement.appointment) {
+        Block appointment = calendarTapDetails.appointments[0];
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EventPage(appointment:appointment)),
+        );
+      }
+    }
     return SfCalendar(
       view: CalendarView.month,
-
+      onTap: calendarTapped,
       firstDayOfWeek: 1,
       dataSource: StudySessionSource(_getDataSource()),
       monthViewSettings: MonthViewSettings(
