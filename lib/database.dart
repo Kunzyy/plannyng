@@ -13,3 +13,6 @@ User getUser() {
   return user;
 }
 
+DateTime toDateTime(String date) {
+  return DateTime.parse(date);
+}

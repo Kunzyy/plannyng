@@ -66,16 +66,38 @@ const backgroundDeco = BoxDecoration(
 );
 
 const paddingCard = EdgeInsets.all(8.0);
+const largePadding = EdgeInsets.all(30.0);
 
 var appTheme = ThemeData(
+  primaryColor: primaryColor,
+  accentColor: accentColor,
+  highlightColor: accentColor,
+  buttonColor: secondaryColor,
+  textTheme: TextTheme(
+  ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      primary: secondaryColor,
       textStyle: titreButton,
       minimumSize: Size(150,50),
+      primary: secondaryColor,
     )
-  )
+  ),
+  appBarTheme: AppBarTheme(
+    backgroundColor: primaryColor,
+    elevation: 0.0,
+    textTheme: TextTheme(
+      headline6: GoogleFonts.roboto(
+        color: Colors.white,
+        fontSize: 25.0,
+      ),
+    ),
+    iconTheme: IconThemeData(
+      color: Colors.white,
+    )
+  ),
 );
+
+var largeurForm = 100.0;
 
 // Autres
 
@@ -92,6 +114,9 @@ var repartCours = [50, 50, 30, 50, 65, 50, 67, 100, 100];
 
 var valeursProfil = ["Agathe Moineau", "Umons", "Faculté Polytechnique de Mons", "Ingénieur civil orientation générale", "BA1" ];
 var etiquettesProfil = ["Etablissement", "Faculté", "Cursus", "Année d'étude"];
+
+var etiquettesForm = ["Nombre d'heures de travail par jour", "Heure de début de la journée", "Heure de fin de la journée", "Nombre de pauses", "Durée des pauses", "Début de la pause de midi", "Fin de la pause de midi"];
+var cardForm = ["Durée de l'étude", "Horaire d'étude", "Pauses", "Pause de midi"];
 
 //Variables de session
 var idLoggedIn;
