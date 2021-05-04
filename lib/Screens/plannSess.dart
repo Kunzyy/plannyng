@@ -3,7 +3,7 @@ import 'package:date_time_picker/date_time_picker.dart';
 
 import 'package:plannyng/Components/drawerComponent.dart';
 import 'package:plannyng/Screens/plannSessSettings.dart';
-import 'package:plannyng/main.dart';
+import 'package:plannyng/functionsWidgets.dart';
 
 import '../Constants.dart';
 

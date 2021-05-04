@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+
 import 'package:plannyng/Screens/waitPlanSess.dart';
-import 'package:plannyng/main.dart';
 
 import 'package:plannyng/functionsWidgets.dart';
 
@@ -25,7 +25,6 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
         constraints: BoxConstraints.expand(),
         decoration: backgroundDeco,
         child: Center(
-
           child: Form(
             child: SingleChildScrollView(
               child: Column(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-import 'package:plannyng/Constants.dart';
 import 'package:plannyng/classes.dart';
 
 class StudySessionSource extends CalendarDataSource {

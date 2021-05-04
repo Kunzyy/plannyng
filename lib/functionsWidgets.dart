@@ -32,7 +32,7 @@ createFormCase(String etiquette, int type, double widthEcran, [String etiquette2
   if (type != 2) {
     TextInputType textInputType = TextInputType.text;
     if(type == 0) {
-      TextInputType textInputType = TextInputType.number;
+      textInputType = TextInputType.number;
     }
 
     row.add(Container(
@@ -64,7 +64,7 @@ createFormCase(String etiquette, int type, double widthEcran, [String etiquette2
     if (type2 != 2) {
       TextInputType textInputType = TextInputType.text;
       if(type2 == 0) {
-        TextInputType textInputType = TextInputType.number;
+        textInputType = TextInputType.number;
       }
 
       row.add(Container(
@@ -128,3 +128,14 @@ List<Widget> createCard(String titre, List<String> listeEtiquette, List<String> 
   }
   return listeWidget;
 }
+
+redirect(context, newContext, [bool replacement]) {
+  dynamic newRoute = MaterialPageRoute(builder: (context) => newContext);
+  if (replacement == false) {
+    Navigator.push(context, newRoute);
+  }
+  else {
+    Navigator.pushReplacement(context, newRoute);
+  }
+}
+

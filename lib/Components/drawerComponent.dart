@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:plannyng/Constants.dart';
-import 'package:plannyng/main.dart';
+import 'package:plannyng/functionsWidgets.dart';
 
 class DrawerComponent extends StatelessWidget {
   @override
