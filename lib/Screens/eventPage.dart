@@ -39,6 +39,14 @@ class EventPage extends StatelessWidget {
                     DateFormat('yyyy-MM-dd – kk:mm').format(appointment.start),
                     style: listeCard),
               ),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                  MaterialStateProperty.all<Color>(primaryColor),
+                ),
+                onPressed: () {},
+                child: Text("Je veux changer l'heure de début !"),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Text(
@@ -51,6 +59,14 @@ class EventPage extends StatelessWidget {
                 child: Text(
                     DateFormat('yyyy-MM-dd – kk:mm').format(appointment.finish),
                     style: listeCard),
+              ),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                  MaterialStateProperty.all<Color>(primaryColor),
+                ),
+                onPressed: () {},
+                child: Text("Je veux changer l'heure de fin !"),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -67,7 +83,7 @@ class EventPage extends StatelessWidget {
                   height: 48.0,
                 ),
               ),
-              Text("Vous voulez changer la couleur ?"),
+              Text("Vous voulez changer la couleur ?", style: listeCard),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Container(
