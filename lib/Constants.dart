@@ -13,8 +13,15 @@ const secondaryColor = Color(0xffD76D7C);
 const accentColor = Color(0xffB1D76D);
 const otherColor = Color(0xff936DD7);
 
-// Police utilisée
+// Paramètres Opti
 
+double heureJourOpti = 10.0;
+String heureDebutOpti = '08:00';
+String heureFinOpti = '20:00';
+var nombrePausesOpti = 10;
+double dureePausesOpti = 5.0;
+String heureDebutLunchOpti = '12:30';
+String heureFinLunchOpti = '13:30';
 
 // Tous les textes utilisés
 
@@ -67,6 +74,9 @@ const backgroundDeco = BoxDecoration(
 
 const paddingCard = EdgeInsets.all(8.0);
 const largePadding = EdgeInsets.all(30.0);
+
+double widthForm = 200.0;
+double widthText = 150.0;
 
 var appTheme = ThemeData(
   primaryColor: primaryColor,

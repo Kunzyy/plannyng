@@ -11,11 +11,11 @@ class Home extends StatelessWidget {
     return Scaffold(
       drawer: DrawerComponent(),
       appBar: AppBar(
-        title: Text(
-          "Mon plannyng"
-        ),
-        backgroundColor: primaryColor,
-        elevation: 0.0
+          title: Text(
+              "Mon plannyng"
+          ),
+          backgroundColor: primaryColor,
+          elevation: 0.0
       ),
       body: Container(
         constraints: BoxConstraints.expand(),

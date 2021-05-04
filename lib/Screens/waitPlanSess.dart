@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:plannyng/Screens/plannSess.dart';
+import 'plannSessSettings.dart';
 
 class WaitPlanSess extends StatefulWidget {
   @override
@@ -18,7 +20,15 @@ class _WaitPlanSessState extends State<WaitPlanSess> {
       body: Container(
         child: Column(
           children: [
-            Text("test"),
+            Text(dateDebut),
+            Text(dateFin),
+            Text(heureJour.toString()),
+            Text(heureDebut),
+            Text(heureFin),
+            Text(nombrePauses.toString()),
+            Text(dureePauses.toString()),
+            Text(heureDebutLunch),
+            Text(heureFinLunch),
           ],
         ),
       ),

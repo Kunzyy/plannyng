@@ -131,11 +131,11 @@ class _LoginState extends State<Login> {
                       ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all<Color>(primaryColor),
+                          MaterialStateProperty.all<Color>(primaryColor),
                         ),
                         onPressed: () {
                           dynamic newRoute =
-                              MaterialPageRoute(builder: (context) => SignIn());
+                          MaterialPageRoute(builder: (context) => SignIn());
                           Navigator.pushReplacement(context, newRoute);
                         },
                         child: Text("Je m'inscris !"),

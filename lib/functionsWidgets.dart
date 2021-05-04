@@ -18,84 +18,6 @@ createCardPlanSess(String texte) {
   );
 }
 
-createFormCase(String etiquette, int type, double widthEcran, [String etiquette2 = '', int type2]) {
-  List<Widget> row = [];
-  double widthEtiquette = (widthEcran/4) + 5.0;
-  double widthForm = (widthEcran/4) - 50.0;
-
-  row.add(Container(
-    child: Text(etiquette),
-    width: widthEtiquette,
-  ));
-
-  // Si texte numérique ou alphabétique
-  if (type != 2) {
-    TextInputType textInputType = TextInputType.text;
-    if(type == 0) {
-      textInputType = TextInputType.number;
-    }
-
-    row.add(Container(
-      width: widthForm,
-      child: TextFormField(
-        keyboardType: textInputType,
-      ),
-
-
-    ));
-  }
-
-  // Si heure
-  else {
-    row.add(Container(
-      width: widthForm,
-      child: DateTimePicker(
-        type: DateTimePickerType.time,
-      ),
-    ));
-  }
-
-  if (etiquette2 != '') {
-    row.add(Container(
-      width: widthEtiquette,
-      child: Text(etiquette2),
-    ));
-
-    if (type2 != 2) {
-      TextInputType textInputType = TextInputType.text;
-      if(type2 == 0) {
-        textInputType = TextInputType.number;
-      }
-
-      row.add(Container(
-        width: widthForm,
-        child: TextFormField(
-          keyboardType: textInputType,
-        ),
-
-
-      ));
-    }
-    // Si heure
-    else if (type2 == 2) {
-      row.add(Container(
-        width: widthForm,
-        child: DateTimePicker(
-          type: DateTimePickerType.time,
-        ),
-      ));
-    }
-  }
-  return Center(
-    child: Padding(
-      padding: largePadding,
-      child: Row(
-        children: row,
-      ),
-    ),
-  );
-}
-
 List<Widget> createCard(String titre, List<String> listeEtiquette, List<String> listeValeur1, [List<String> listeValeur2, List<String> listeValeur3]) {
   List<Widget> listeWidget = [];
 
@@ -139,3 +61,47 @@ redirect(context, newContext, [bool replacement]) {
   }
 }
 
+calculateAndRedirect(context, newContext, dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch, [bool replacement]) {
+  // Calcul du planning
+  print(dateDebut);
+  print(dateFin);
+  print(heureJour);
+  print(heureDebut);
+  print(heureFin);
+  print(nombrePauses);
+  print(dureePauses);
+  print(heureDebutLunch);
+  print(heureFinLunch);
+
+  // Actualisation du Home
+  redirect(context, newContext, true);
+}
+
+Future<void> confirmPlan(context, newContext, dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: true,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Plannyng"),
+        content: Text("Planning calculé"),
+        actions: [
+          TextButton(
+            child: Text('Annuler'),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          TextButton(
+            child: Text('Valider'),
+            onPressed: () => calculateAndRedirect(context, newContext, dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch,),
+          )
+        ],
+      );
+    }
+  );
+}
+
+timeOfDay(String time) {
+  List<String> timeToList = time.split(":");
+  int minInDay = 60*int.parse(timeToList[0]) + int.parse(timeToList[1]);
+  return minInDay;
+}

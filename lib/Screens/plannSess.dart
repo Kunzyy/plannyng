@@ -16,21 +16,24 @@ class PlanSess extends StatefulWidget {
 }
 
 class _PlanSessState extends State<PlanSess> {
+  final _formDatesKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       drawer: DrawerComponent(),
       appBar: AppBar(
-          title: Text(
-              "Planifier une session"
-          ),
+        title: Text(
+            "Planifier une session"
+        ),
       ),
 
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: backgroundDeco,
         child: Form(
+          key: _formDatesKey,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -59,7 +62,21 @@ class _PlanSessState extends State<PlanSess> {
                     firstDate: kFirstDay,
                     lastDate: kLastDay,
                     initialDate: DateTime.now(),
-                    onChanged: (val) => dateDebut = val,
+                    onChanged: (val) => setState(() {dateDebut = val;}),
+                    validator: (val) {
+                      if (val == null || val.isEmpty) {
+                        return "Veuillez remplir ce champ";
+                      }
+                      else if(DateTime.parse(val).compareTo(DateTime.now()) < 0) {
+                        return "Cette date est déjà passée";
+                      }
+                      else if(DateTime.parse(val).compareTo(DateTime.parse(dateFin)) > 0) {
+                        return 'La date de début doit être antérieure à celle de fin';
+                      }
+                      else {
+                        return null;
+                      }
+                    },
                   ),
                 ),
                 Padding(
@@ -75,19 +92,52 @@ class _PlanSessState extends State<PlanSess> {
                     firstDate: kFirstDay,
                     lastDate: kLastDay,
                     initialDate: DateTime.now(),
-                    onChanged: (val) => dateFin = val,
+                    onChanged: (val) => setState(() {dateFin = val;}),
                     cursorColor: primaryColor,
+                    validator: (val) {
+                      if (val == null || val.isEmpty) {
+                        return "Veuillez remplir ce champ";
+                      }
+                      else if(DateTime.parse(val).compareTo(DateTime.now()) < 0) {
+                        return "Cette date est déjà passée";
+                      }
+                      else if(DateTime.parse(val).compareTo(DateTime.parse(dateDebut)) < 0) {
+                        return 'La date de début doit être postérieure à celle de début';
+                      }
+                      else {
+                        return null;
+                      }
+                    },
+
                   ),
                 ),
                 Padding(
                   padding: paddingCard,
                   child: ElevatedButton(
-                    onPressed: () => redirect(context, PlanSessSettings(), false),
-                    child: Text("Valider les dates",
+                    onPressed: () {
+                      if (_formDatesKey.currentState.validate()) {
+                        confirmPlan(context, listeRedirection[0], dateDebut, dateFin, heureJourOpti, heureDebutOpti, heureFinOpti, nombrePausesOpti, dureePausesOpti, heureDebutLunchOpti, heureFinLunchOpti);
+                      }
+                    },
+                    child: Text("Planning optimisé",
                       style: titreButton,
                     ),
                   ),
                 ),
+                Padding(
+                  padding: paddingCard,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formDatesKey.currentState.validate()) {
+                        redirect(context, PlanSessSettings(), false);
+                      }
+                    },
+                    child: Text("Planning personnalisé",
+                      style: titreButton,
+                    ),
+                  ),
+                ),
+
               ],
 
             ),

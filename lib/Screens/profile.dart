@@ -4,7 +4,6 @@ import 'package:plannyng/Components/drawerComponent.dart';
 import 'package:plannyng/Screens/editProfile.dart';
 
 import 'package:plannyng/database.dart';
-import 'package:plannyng/main.dart';
 import 'package:plannyng/classes.dart';
 import 'package:plannyng/functionsWidgets.dart';
 
@@ -36,10 +35,10 @@ class Profile extends StatelessWidget {
           children: [
             Card(
               child: Padding(
-                padding: paddingCard,
-                child: Column(
-                  children: createCard(valeursProfil[0], etiquettesProfil, valeursProfil.sublist(1)),
-                )
+                  padding: paddingCard,
+                  child: Column(
+                    children: createCard(valeursProfil[0], etiquettesProfil, valeursProfil.sublist(1)),
+                  )
               ),
             ),
             Card(
