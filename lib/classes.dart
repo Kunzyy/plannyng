@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
+class ProgException implements Exception {
+  String cause;
+  ProgException(this.cause);
+}
+
 class Course {
   String name;
   int repartition;
   int hours_exo;
   int hours_theory;
-  Course(this.name, this.hours_exo, this.hours_theory) {
+  Course(this.name, this.repartition, this.hours_exo, this.hours_theory) {
     // Code if needed.
   }
   stringRepartition() {
@@ -34,7 +39,7 @@ class Block {
   DateTime finish;
   Color background;
   bool exo;
-  bool done;
+  bool done; //true if done
   Block(this.start, this.finish, [this.course, this.background, this.exo]) {
     // Code if needed.
   }
@@ -60,6 +65,55 @@ class User {
     }
 
     return [listeStringHeures, listeStringRepart];
+  }
+
+  progUpdate () {
+    DateTime now = DateTime.now();
+    this.plannyng.forEach((element) {
+      if(!element.done && element.finish.isBefore(now)){
+        this.prog.forEach((j) {
+          if(j.course == element.course){
+            int timeTaken = element.finish.difference(element.start).inMinutes;
+            if(element.exo){
+              try {
+                j.time_left_exo -= timeTaken;
+                if (j.time_left_exo < 0)
+                  throw new ProgException("time_left_exo < 0");
+              } on ProgException {
+                  print("Time Left Exo is below 0, this shouldn't be possible. Time_left_exo is being set to 0");
+                  j.time_left_exo = 0;
+              }
+            }
+            else {
+              try {
+                j.time_left_theory -= timeTaken;
+                if (j.time_left_theory < 0)
+                  throw new ProgException("time_left_theory < 0");
+              } on ProgException {
+                print("Time Left Theory is below 0, this shouldn't be possible. time_left_theory is being set to 0");
+                j.time_left_theory = 0;
+              }
+            }
+          }
+        });
+      }
+    });
+  }
+
+  redoBlocks(Block block) {
+    block.done = false;
+
+    this.prog.forEach((j) {
+      if(j.course == block.course){
+        int timeTaken = block.finish.difference(block.start).inMinutes;
+        if(block.exo){
+          j.time_left_exo += timeTaken;
+        }
+        else {
+          j.time_left_theory += timeTaken;
+        }
+      }
+    });
   }
 }
 

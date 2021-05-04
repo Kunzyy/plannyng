@@ -6,11 +6,16 @@ import 'package:plannyng/Screens/editProfile.dart';
 import '../Constants.dart';
 import 'package:plannyng/database.dart';
 import 'package:plannyng/main.dart';
+import 'package:plannyng/classes.dart';
 
 
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    User user = getUser();
+    print(user.name);
+
 
     List<List> listes = getUser().listeStrings();
 
@@ -91,5 +96,6 @@ class Profile extends StatelessWidget {
 
 
       ),
-    );  }
+    );
+  }
 }
