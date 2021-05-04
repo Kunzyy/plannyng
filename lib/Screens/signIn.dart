@@ -79,6 +79,7 @@ class _SignInState extends State<SignIn> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
+                          obscureText: true,
                           decoration: const InputDecoration(
                             hintText: formMDP,
                             focusedBorder: OutlineInputBorder(
@@ -99,6 +100,7 @@ class _SignInState extends State<SignIn> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
+                          obscureText: true,
                           decoration: const InputDecoration(
                             hintText: formValMDP,
                             focusedBorder: OutlineInputBorder(
