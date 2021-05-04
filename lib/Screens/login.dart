@@ -41,7 +41,9 @@ class _LoginState extends State<Login> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
+                          keyboardType: TextInputType.text,
                           decoration: const InputDecoration(
+                            icon: Icon(Icons.person),
                             hintText: formMail,
                             focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: primaryColor),
@@ -59,8 +61,10 @@ class _LoginState extends State<Login> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
+                          keyboardType: TextInputType.text,
                           obscureText: true,
                           decoration: const InputDecoration(
+                            icon: Icon(Icons.lock),
                             hintText: formMDP,
                             focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: primaryColor),
