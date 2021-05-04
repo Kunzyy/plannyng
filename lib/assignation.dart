@@ -4,7 +4,7 @@ import 'classes.dart';
 void createPlannyng(User user, DateTime beginning, DateTime end, Settings settings){
 
   int duration = end.difference(beginning).inDays;
-  int avtime = settings.hourperday * duration;
+  int avtime = (settings.hourperday * duration) * 60;
   List<int> toassign;
   bool warning = false;
 
@@ -26,6 +26,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
       avtime -= (user.prog[i].time_left_exo + user.prog[i].time_left_theory);
     }
   }
+  //Pour chaque jour, on remplit d'event sans se soucier du cours
   for(var i = 0; i <= duration; i++){
 
     DateTime actualday = beginning.add(Duration(days: i));
@@ -54,9 +55,16 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
       tmpbegin = blockend.add(Duration(minutes: settings.durbreak));
     }
   }
-  //Pour chaque jour, on remplit d'event sans se soucier du cours
-
   //On assigne les cours aux events et on décrémente la valeur à assigner jusqu'à ne plus rien avoir à assigner
+  user.plannyng.forEach((element) {
+   for (var i = 0; i <= user.prog.length; i++){
+     if (toassign[i] > 0){
+       element.course = user.prog[i].course;
+       toassign[i] -= element.start.difference(element.finish).inMinutes;
+       break;
+     }
+   }
+  });
 
   //Ez pez lem squez? A complexifier pour de meilleurs résultats
 }
