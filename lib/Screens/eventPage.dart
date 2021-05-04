@@ -18,107 +18,104 @@ class EventPage extends StatelessWidget {
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: backgroundDeco,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: Text("Nom du cours", style: titreCard),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: Text(appointment.course.name, style: listeCard),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: Text("Heure de début", style: titreCard),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: Text(DateFormat('yyyy-MM-dd – kk:mm').format(appointment.start), style: listeCard),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: Text(
-                "Heure de fin",
-                style: titreCard,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text("Nom du cours", style: titreCard),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: Text(DateFormat('yyyy-MM-dd – kk:mm').format(appointment.finish), style: listeCard),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: Text(
-                "Couleur de fond",
-                style: titreCard,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(appointment.course.name, style: listeCard),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: Container(
-                color: appointment.background,
-                width: 48.0,
-                height: 48.0,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text("Heure de début", style: titreCard),
               ),
-            ),
-            Text("Vous voulez changer la couleur ?"),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: Container(
-                child: Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Column(
-                        children: <Widget>[
-                          ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  primaryColor),
-                            ),
-                            onPressed: () {},
-                            child: Text("Je veux celle-ci!!!"),
-                          ),
-                          ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  secondaryColor),
-                            ),
-                            onPressed: () {},
-                            child: Text("Je veux celle-ci!!!"),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Column(
-                        children: [
-                          ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                              MaterialStateProperty.all<Color>(accentColor),
-                            ),
-                            onPressed: () {},
-                            child: Text("Je veux celle-ci!!!"),
-                          ),
-                          ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                              MaterialStateProperty.all<Color>(otherColor),
-                            ),
-                            onPressed: () {},
-                            child: Text("Je veux celle-ci!!!"),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                    DateFormat('yyyy-MM-dd – kk:mm').format(appointment.start),
+                    style: listeCard),
+              ),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                  MaterialStateProperty.all<Color>(primaryColor),
+                ),
+                onPressed: () {},
+                child: Text("Je veux changer l'heure de début !"),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                  "Heure de fin",
+                  style: titreCard,
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                    DateFormat('yyyy-MM-dd – kk:mm').format(appointment.finish),
+                    style: listeCard),
+              ),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                  MaterialStateProperty.all<Color>(primaryColor),
+                ),
+                onPressed: () {},
+                child: Text("Je veux changer l'heure de fin !"),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                  "Couleur de fond",
+                  style: titreCard,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Container(
+                  color: appointment.background,
+                  width: 48.0,
+                  height: 48.0,
+                ),
+              ),
+              Text("Vous voulez changer la couleur ?", style: listeCard),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Container(
+                  child: DropdownButton<Color>(
+                    hint: Text('Sélectionnez une couleur'),
+                    items: <Color>[
+                      primaryColor,
+                      secondaryColor,
+                      accentColor,
+                      otherColor
+                    ].map((Color value) {
+                      //La fonction crée un objet qui aura la même valeur et le même texte, à partir du tableau d'objet
+                      return new DropdownMenuItem<Color>(
+                        value: value,
+                        child: Center(
+                          child: new ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(value),
+                            ),
+                            onPressed: () {},
+                            child: Text("Je veux celle-ci !!!"),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (_) {},
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
