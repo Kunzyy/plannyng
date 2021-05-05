@@ -50,7 +50,7 @@ List<Block> _getDataSource(user) {
   //   }
   // }
 
-  //meetings = user.planplannyng();
+  meetings = user.planplannyng();
 
   // print("Meetings");
   // print(meetings);

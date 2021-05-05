@@ -82,6 +82,19 @@ class _EventPage extends State<EventPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text("Tu as respecté ton planning ?",
+                    style: titreCard),
+              ),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                  MaterialStateProperty.all<Color>(primaryColor),
+                ),
+                onPressed: () {},
+                child: Text("J'ai fait ces heures !"),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Text(
                   "Couleur de fond",
                   style: titreCard,
