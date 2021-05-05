@@ -14,6 +14,7 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    print("test");
     print(user.name);
 
     List<List> listes = user.listeStrings();

@@ -70,16 +70,16 @@ calculateAndRedirect(context, newContext, user, dateDebut, dateFin, settings, [b
   return user;
 }
 
-Future<void> confirmPlan(context, newContext, user, dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch) async {
+Future<void> confirmPlan(context, newContext, user, dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePausesAM, dureePausesAM, nombrePausesPM, dureePausesPM, heureDebutLunch, heureFinLunch) async {
   Settings settings = Settings();
 
   settings.hourperday = heureJour;
   settings.start = toToD(heureDebut);
   settings.finish = toToD(heureFin);
-  settings.nbrbreak_am = nombrePauses;
-  settings.durbreak_am = dureePauses;
-  settings.nbrbreak_pm = nombrePauses;
-  settings.durbreak_pm = dureePauses;
+  settings.nbrbreak_am = nombrePausesAM;
+  settings.durbreak_am = dureePausesAM;
+  settings.nbrbreak_pm = nombrePausesAM;
+  settings.durbreak_pm = dureePausesAM;
   settings.lunchbegin = toToD(heureDebutLunch);
   settings.lunchend = toToD(heureFinLunch);
 

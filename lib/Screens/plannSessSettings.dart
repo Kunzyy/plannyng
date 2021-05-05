@@ -11,8 +11,11 @@ import 'package:plannyng/Screens/home.dart';
 int heureJour = 0;
 String heureDebut = "00:00";
 String heureFin = "24:00";
-int nombrePauses = 0;
-int dureePauses = 0;
+int nombrePausesAM = 0;
+int dureePausesAM = 0;
+int nombrePausesPM = 0;
+int dureePausesPM = 0;
+
 String heureDebutLunch = "00:00";
 String heureFinLunch = "24:00";
 
@@ -177,7 +180,7 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                                 ),
 
                                 keyboardType: TextInputType.number,
-                                onChanged: (val) => setState(() {nombrePauses = int.parse(val);}),
+                                onChanged: (val) => setState(() {nombrePausesAM = int.parse(val);}),
                                 validator: (val) {
                                   if (val == null || val.isEmpty) {
                                     return "Veuillez remplir ce champ";
@@ -212,7 +215,7 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                                 ),
 
                                 keyboardType: TextInputType.number,
-                                onChanged: (val) => setState(() {dureePauses = int.parse(val);}),
+                                onChanged: (val) => setState(() {dureePausesAM = int.parse(val);}),
                                 validator: (val) {
                                   if (val == null || val.isEmpty) {
                                     return "Veuillez remplir ce champ";
@@ -232,6 +235,79 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                       ),
                     ),
                     createCardPlanSess(cardForm[3]),
+                    Center(
+                      child: Padding(
+                        padding: largePadding,
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Text(etiquettesForm[3]),
+                              width: widthText,
+                            ),
+                            Container(
+                              width: widthForm,
+
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  errorMaxLines: 2,
+                                ),
+
+                                keyboardType: TextInputType.number,
+                                onChanged: (val) => setState(() {nombrePausesPM = int.parse(val);}),
+                                validator: (val) {
+                                  if (val == null || val.isEmpty) {
+                                    return "Veuillez remplir ce champ";
+                                  }
+                                  else if(int.tryParse(val) == null) {
+                                    return "Veuillez entrer un nombre entier";
+                                  }
+                                  else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Padding(
+                        padding: largePadding,
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Text(etiquettesForm[4]),
+                              width: widthText,
+                            ),
+                            Container(
+                              width: widthForm,
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  errorMaxLines: 2,
+                                ),
+
+                                keyboardType: TextInputType.number,
+                                onChanged: (val) => setState(() {dureePausesPM = int.parse(val);}),
+                                validator: (val) {
+                                  if (val == null || val.isEmpty) {
+                                    return "Veuillez remplir ce champ";
+                                  }
+                                  else if(int.tryParse(val) == null) {
+                                    return "Veuillez entrer un nombre entier";
+                                  }
+                                  else {
+                                    return null;
+                                  }
+                                },
+
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    createCardPlanSess(cardForm[4]),
                     Center(
                       child: Padding(
                         padding: largePadding,
@@ -314,9 +390,8 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                       child: ElevatedButton(
                         onPressed: () {
                           print(timeOfDay(heureFin).toString());
-
                           if (_formSettingsKey.currentState.validate()) {
-                            confirmPlan(context, Home(), user,toDateTime(dateDebut), toDateTime(dateFin), heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch);
+                            confirmPlan(context, Home(user: user,), user,toDateTime(dateDebut), toDateTime(dateFin), heureJour, heureDebut, heureFin, nombrePausesAM, dureePausesAM, nombrePausesPM, dureePausesPM, heureDebutLunch, heureFinLunch);
                           }
                         },
                         child: Text("Valider les paramètres",

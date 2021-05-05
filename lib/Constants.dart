@@ -16,8 +16,11 @@ const testColor = Color(testcolor);
 int heureJourOpti = 10;
 String heureDebutOpti = '08:00';
 String heureFinOpti = '20:00';
-int nombrePausesOpti = 2;
-int dureePausesOpti = 10;
+int nombrePausesOptiAM = 2;
+int dureePausesOptiAM = 10;
+int nombrePausesOptiPM = 2;
+int dureePausesOptiPM = 10;
+
 String heureDebutLunchOpti = '12:30';
 String heureFinLunchOpti = '13:30';
 
@@ -144,7 +147,7 @@ var valeursProfil = ["Agathe Moineau", "Umons", "Faculté Polytechnique de Mons"
 var etiquettesProfil = ["Etablissement", "Faculté", "Cursus", "Année d'étude"];
 
 var etiquettesForm = ["Nombre d'heures de travail par jour", "Heure de début de la journée", "Heure de fin de la journée", "Nombre de pauses", "Durée des pauses", "Début de la pause de midi", "Fin de la pause de midi"];
-var cardForm = ["Durée de l'étude", "Horaire d'étude", "Pauses", "Pause de midi"];
+var cardForm = ["Durée de l'étude", "Horaire d'étude", "Pauses du matin", "Pause de l'après-midi", "Pause de midi"];
 
 //Variables de session
 var idLoggedIn; //Valeur par défaut : null

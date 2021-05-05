@@ -18,6 +18,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final dbHelper = DatabaseHelper.instance;
+
   User user;
   _HomeState(this.user);
 
@@ -28,14 +29,26 @@ class _HomeState extends State<Home> {
         builder: (context, snapshot) {
           if(snapshot.hasData){
             user = snapshot.data;
-            return Container(
-                constraints: BoxConstraints.expand(),
-                decoration: backgroundDeco,
-                child: Container(
-                  width: MediaQuery.of(context).size.width - 40.0,
-                  height: MediaQuery.of(context).size.height - 40.0,
-                  child: CalendarComponent(user: user)
-                ),
+            print("Here");
+            print(user.name);
+            return Scaffold(
+              drawer: DrawerComponent(user: user,),
+              appBar: AppBar(
+                  title: Text(
+                      "Mon plannyng"
+                  ),
+                  backgroundColor: primaryColor,
+                  elevation: 0.0
+              ),
+              body: Container(
+                  constraints: BoxConstraints.expand(),
+                  decoration: backgroundDeco,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width - 40.0,
+                    height: MediaQuery.of(context).size.height - 40.0,
+                    child: CalendarComponent(user: user)
+                  ),
+              ),
             );
           }else{
             return new Center(
@@ -44,21 +57,12 @@ class _HomeState extends State<Home> {
           }
         });
 
-    return Scaffold(
-      drawer: DrawerComponent(user: user),
-      appBar: AppBar(
-          title: Text(
-              "Mon plannyng"
-          ),
-          backgroundColor: primaryColor,
-          elevation: 0.0
-      ),
-      body: futureBuilder
-    );
+    return futureBuilder;
   }
 
   Future<User> _getUser(int id) async {
-    if (user != User("", "", [])) {
+    print(user.name);
+    if (user.name != "") {
       return user;
     }
     else{
