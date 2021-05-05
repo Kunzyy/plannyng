@@ -46,6 +46,9 @@ class _PlanSessState extends State<PlanSess> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 10,
+                ),
                 Padding(
                   padding: paddingCard,
                   child: Card(
@@ -65,7 +68,7 @@ class _PlanSessState extends State<PlanSess> {
                   ),
                 ),
                 Padding(
-                  padding: paddingCard,
+                  padding: EdgeInsets.only(left: 50.0, right:50.0),
                   child: DateTimePicker(
                     type: DateTimePickerType.date,
                     firstDate: kFirstDay,
@@ -95,7 +98,7 @@ class _PlanSessState extends State<PlanSess> {
                   ),
                 ),
                 Padding(
-                  padding: paddingCard,
+                  padding: EdgeInsets.only(left: 50.0, right:50.0),
                   child: DateTimePicker(
                     type: DateTimePickerType.date,
                     firstDate: kFirstDay,
@@ -121,7 +124,7 @@ class _PlanSessState extends State<PlanSess> {
                   ),
                 ),
                 Padding(
-                  padding: paddingCard,
+                  padding: EdgeInsets.only(left: 50.0, top: 30.0, right:50.0),
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formDatesKey.currentState.validate()) {
@@ -134,7 +137,7 @@ class _PlanSessState extends State<PlanSess> {
                   ),
                 ),
                 Padding(
-                  padding: paddingCard,
+                  padding: EdgeInsets.only(left: 50.0, top: 15.0, right:50.0),
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formDatesKey.currentState.validate()) {

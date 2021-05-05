@@ -33,14 +33,26 @@ class DrawerComponent extends StatelessWidget {
       child: Column(
         children: [
           DrawerHeader(
-            child: ListView(
-              children : [
-                Text(valeursProfil[0]),
-                Text(valeursProfil[2]),
-                Text(valeursProfil[3]),
-                Text(valeursProfil[4]),
-
-              ],
+            child: Padding(
+              padding: paddingCard,
+              child: Card(
+                color: secondaryColor,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: 250.0,
+                    height: 75.0,
+                    child: ListView(
+                      children : [
+                        Center(child: Text(valeursProfil[0], style: titreCard2,)),
+                        Center(child: Text(valeursProfil[2], style: listeCard2,)),
+                        Center(child: Text(valeursProfil[3], style: listeCard2,)),
+                        Center(child: Text(valeursProfil[4], style: listeCard2,)),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
           Expanded(

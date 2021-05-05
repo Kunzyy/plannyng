@@ -33,156 +33,159 @@ class _SignInState extends State<SignIn> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 60.0),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                        child: TextFormField(
-                          keyboardType: TextInputType.text,
-                          decoration: const InputDecoration(
-                            icon: Icon(Icons.person),
-                            hintText: formNom,
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: primaryColor),
-                            ),
-                          ),
-                          onSaved: (value) => setState(() => nom = value),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return formErrorNom;
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                        child: TextFormField(
-                          keyboardType: TextInputType.text,
-                          decoration: const InputDecoration(
-                            icon: Icon(Icons.email),
-                            hintText: formMail,
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: primaryColor),
-                            ),
-                          ),
-                          onSaved: (value) => setState(() => mail = value),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return formErrorMail;
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                        child: TextFormField(
-                          keyboardType: TextInputType.text,
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                            icon: Icon(Icons.lock),
-                            hintText: formMDP,
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: primaryColor),
-                            ),
-                          ),
-                          onChanged: (value) =>
-                              setState(() => password = value),
-                          onSaved: (value) => setState(() => password = value),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return formErrorMDP;
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                        child: TextFormField(
-                          keyboardType: TextInputType.text,
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                            icon: Icon(Icons.lock),
-                            hintText: formValMDP,
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: primaryColor),
-                            ),
-                          ),
-                          onChanged: (value) =>
-                              setState(() => valPassword = value),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return formErrorValMDP;
-                            }
-                            else {
-                              if (password != valPassword) {
-                                return formDiffMDP;
-                              }
-                              else
-                                return null;
-                            }
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: Center(
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  primaryColor),
-                            ),
-                            onPressed: () {
-                              // Validate will return true if the form is valid, or false if
-                              // the form is invalid.
-                              if (_formKey.currentState.validate()) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      // Process data.
-                                        content:
-                                        Text("Traitement des données")));
-                                _formKey.currentState.save(); // Sauvegarde de l'état des champs
-                                _insertUser();
-                                dynamic newRoute = MaterialPageRoute(
-                                    builder: (context) => Home());
-                                Navigator.pushReplacement(context, newRoute);
-                              }
-                            },
-                            child: Text("M'inscrire !"),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 4.75,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Container(
-                  child: Column(
-                    children: <Widget>[
-                      Text("Vous avez déjà un compte ?"),
-                      ElevatedButton(
+              Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.person),
+                          hintText: formNom,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: primaryColor),
+                          ),
+                        ),
+                        onSaved: (value) => setState(() => nom = value),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return formErrorNom;
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.email),
+                          hintText: formMail,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: primaryColor),
+                          ),
+                        ),
+                        onSaved: (value) => setState(() => mail = value),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return formErrorMail;
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.lock),
+                          hintText: formMDP,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: primaryColor),
+                          ),
+                        ),
+                        onChanged: (value) =>
+                            setState(() => password = value),
+                        onSaved: (value) => setState(() => password = value),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return formErrorMDP;
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.lock),
+                          hintText: formValMDP,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: primaryColor),
+                          ),
+                        ),
+                        onChanged: (value) =>
+                            setState(() => valPassword = value),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return formErrorValMDP;
+                          }
+                          else {
+                            if (password != valPassword) {
+                              return formDiffMDP;
+                            }
+                            else
+                              return null;
+                          }
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Center(
+                      child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(primaryColor),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              primaryColor),
                         ),
                         onPressed: () {
-                          dynamic newRoute =
-                              MaterialPageRoute(builder: (context) => Login());
-                          Navigator.pushReplacement(context, newRoute);
+                          // Validate will return true if the form is valid, or false if
+                          // the form is invalid.
+                          if (_formKey.currentState.validate()) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  // Process data.
+                                    content:
+                                    Text("Traitement des données")));
+                            _formKey.currentState.save(); // Sauvegarde de l'état des champs
+                            _insertUser();
+                            dynamic newRoute = MaterialPageRoute(
+                                builder: (context) => Home());
+                            Navigator.pushReplacement(context, newRoute);
+                          }
                         },
-                        child: Text("Je me connecte !"),
+                        child: Text("M'inscrire !"),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 16,
+              ),
+              Container(
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Vous avez déjà un compte ?"),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(primaryColor),
+                      ),
+                      onPressed: () {
+                        dynamic newRoute =
+                            MaterialPageRoute(builder: (context) => Login());
+                        Navigator.pushReplacement(context, newRoute);
+                      },
+                      child: Text("Je me connecte !"),
+                    ),
+                  ],
                 ),
               ),
             ],

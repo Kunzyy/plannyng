@@ -105,6 +105,14 @@ Future<void> confirmPlan(context, newContext, user, dateDebut, dateFin, heureJou
   );
 }
 
+List<String> listeProg(user) {
+  List<String> liste = [];
+  for (var i = 0; i < user.course.length; i++) {
+    liste.add("Exos : " + user.prog[i].prog_exo.toString() + "% et théorie : " + user.prog[i].prog_exo.toString() + "%");
+  }
+  return liste;
+}
+
 timeOfDay(String time) {
   List<String> timeToList = time.split(":");
   int minInDay = 60*int.parse(timeToList[0]) + int.parse(timeToList[1]);

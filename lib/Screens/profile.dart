@@ -18,6 +18,7 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
 
     List<List> listes = user.listeStrings();
+    user.progUpdate();
 
     return Scaffold(
       drawer: DrawerComponent(user: user),
@@ -34,6 +35,9 @@ class Profile extends StatelessWidget {
         decoration: backgroundDeco,
         child: ListView(
           children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 14,
+            ),
             Card(
               child: Padding(
                   padding: paddingCard,
@@ -50,13 +54,26 @@ class Profile extends StatelessWidget {
                 ),
               ),
             ),
+            // Card(
+            //   child: Padding(
+            //     padding: paddingCard,
+            //     child: Column(
+            //       children: createCard("Ma progression", listeCours, listeProg(user)),
+            //     ),
+            //   ),
+            // ),
+
             Padding(
               padding: paddingCard,
               child: Center(
-                child: ElevatedButton(onPressed: () => redirect(context, EditProfile(), false),
+                child: ElevatedButton(onPressed: () => {},
                     child: Text(buttonEditProfile)),
               ),
-            )
+              // child: ElevatedButton(onPressed: () => redirect(context, EditProfile(), false),
+              //       child: Text(buttonEditProfile)),
+              // ),
+            ),
+
           ],
 
         ),

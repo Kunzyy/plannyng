@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:plannyng/Screens/home.dart';
-import 'package:plannyng/Screens/login.dart';
-import 'package:plannyng/Screens/plannSess.dart';
-import 'package:plannyng/Screens/profile.dart';
-
 // Toutes les couleurs utilisées
 
 const primaryColor = Color(0xff6DD7C8);
@@ -26,8 +21,8 @@ const cours6 = Color(0xff56BCDB);
 int heureJourOpti = 10;
 String heureDebutOpti = '08:00';
 String heureFinOpti = '20:00';
-int nombrePausesOpti = 10;
-int dureePausesOpti = 5;
+int nombrePausesOpti = 2;
+int dureePausesOpti = 10;
 String heureDebutLunchOpti = '12:30';
 String heureFinLunchOpti = '13:30';
 
@@ -63,13 +58,22 @@ var titreDrawer = GoogleFonts.roboto(
 
 var titreCard = GoogleFonts.roboto(
   fontSize: 25.0,
+);
 
+var titreCard2 = GoogleFonts.roboto(
+  fontSize: 20.0,
+  color: Colors.white
 );
 
 var listeCard = GoogleFonts.roboto(
   fontSize: 15.0,
-
 );
+
+var listeCard2 = GoogleFonts.roboto(
+    fontSize: 15.0,
+    color: Colors.white
+);
+
 
 // Mise en page
 
@@ -96,7 +100,7 @@ var appTheme = ThemeData(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       textStyle: titreButton,
-      minimumSize: Size(150,50),
+      minimumSize: Size(180,60),
       primary: secondaryColor,
     )
   ),
