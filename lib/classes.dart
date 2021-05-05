@@ -45,11 +45,16 @@ class Block {
   }
 }
 
+class Day{
+  List<Block> am;
+  List<Block> pm;
+}
+
 class User {
   String name;
   String passwordhash;
   List<Progression> prog;
-  List<Block> plannyng;
+  List<Day> plannyng;
 
   User(this.name, this.passwordhash, this.prog) {
     // Code if needed.
@@ -69,34 +74,73 @@ class User {
 
   progUpdate () {
     DateTime now = DateTime.now();
-    this.plannyng.forEach((element) {
-      if(!element.done && element.finish.isBefore(now)){
-        this.prog.forEach((j) {
-          if(j.course == element.course){
-            int timeTaken = element.finish.difference(element.start).inMinutes;
-            if(element.exo){
-              try {
-                j.time_left_exo -= timeTaken;
-                if (j.time_left_exo < 0)
-                  throw new ProgException("time_left_exo < 0");
-              } on ProgException {
-                  print("Time Left Exo is below 0, this shouldn't be possible. Time_left_exo is being set to 0");
+    this.plannyng.forEach((day) {
+      day.am.forEach((element) {
+        if (!element.done && element.finish.isBefore(now)) {
+          this.prog.forEach((j) {
+            if (j.course == element.course) {
+              int timeTaken = element.finish
+                  .difference(element.start)
+                  .inMinutes;
+              if (element.exo) {
+                try {
+                  j.time_left_exo -= timeTaken;
+                  if (j.time_left_exo < 0)
+                    throw new ProgException("time_left_exo < 0");
+                } on ProgException {
+                  print(
+                      "Time Left Exo is below 0, this shouldn't be possible. Time_left_exo is being set to 0");
                   j.time_left_exo = 0;
+                }
+              }
+              else {
+                try {
+                  j.time_left_theory -= timeTaken;
+                  if (j.time_left_theory < 0)
+                    throw new ProgException("time_left_theory < 0");
+                } on ProgException {
+                  print(
+                      "Time Left Theory is below 0, this shouldn't be possible. time_left_theory is being set to 0");
+                  j.time_left_theory = 0;
+                }
               }
             }
-            else {
-              try {
-                j.time_left_theory -= timeTaken;
-                if (j.time_left_theory < 0)
-                  throw new ProgException("time_left_theory < 0");
-              } on ProgException {
-                print("Time Left Theory is below 0, this shouldn't be possible. time_left_theory is being set to 0");
-                j.time_left_theory = 0;
+          });
+        }
+      });
+      day.pm.forEach((element) {
+        if (!element.done && element.finish.isBefore(now)) {
+          this.prog.forEach((j) {
+            if (j.course == element.course) {
+              int timeTaken = element.finish
+                  .difference(element.start)
+                  .inMinutes;
+              if (element.exo) {
+                try {
+                  j.time_left_exo -= timeTaken;
+                  if (j.time_left_exo < 0)
+                    throw new ProgException("time_left_exo < 0");
+                } on ProgException {
+                  print(
+                      "Time Left Exo is below 0, this shouldn't be possible. Time_left_exo is being set to 0");
+                  j.time_left_exo = 0;
+                }
+              }
+              else {
+                try {
+                  j.time_left_theory -= timeTaken;
+                  if (j.time_left_theory < 0)
+                    throw new ProgException("time_left_theory < 0");
+                } on ProgException {
+                  print(
+                      "Time Left Theory is below 0, this shouldn't be possible. time_left_theory is being set to 0");
+                  j.time_left_theory = 0;
+                }
               }
             }
-          }
-        });
-      }
+          });
+        }
+      });
     });
   }
 
