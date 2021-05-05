@@ -64,7 +64,10 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                                   if (val == null || val.isEmpty) {
                                     return "Veuillez remplir ce champ";
                                   }
-                                  else if (double.parse(val) <= 0) {
+                                  else if(int.tryParse(val) == null) {
+                                    return "Veuillez entrer un nombre entier";
+                                  }
+                                  else if (int.parse(val) <= 0 || int.parse(val) >= 24) {
                                     return "Cette valeur n'est pas valide, veuillez entrer une valeur entre 1 et 24";
                                   }
                                   else {
@@ -170,6 +173,9 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                                   if (val == null || val.isEmpty) {
                                     return "Veuillez remplir ce champ";
                                   }
+                                  else if(int.tryParse(val) == null) {
+                                    return "Veuillez entrer un nombre entier";
+                                  }
                                   else {
                                     return null;
                                   }
@@ -201,6 +207,9 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                                 validator: (val) {
                                   if (val == null || val.isEmpty) {
                                     return "Veuillez remplir ce champ";
+                                  }
+                                  else if(int.tryParse(val) == null) {
+                                    return "Veuillez entrer un nombre entier";
                                   }
                                   else {
                                     return null;
