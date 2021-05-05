@@ -54,11 +54,11 @@ List<Block> _getDataSource(user) {
 
   // print("Meetings");
   // print(meetings);
-  /*
+
   Course cours = Course("test", 4, 4, 4, Colors.blue);
   Block newblock = Block(DateTime.now().add(Duration(seconds:5)), DateTime.now().add(Duration(minutes:10)), cours);
   NotificationHelper.scheduleNotifBlock(newblock);
-  meetings.add(newblock);*/
+  meetings.add(newblock);
 
 
   // final course1 = Course("course1", 2, 15, 3);

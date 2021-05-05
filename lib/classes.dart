@@ -50,9 +50,9 @@ class NotificationHelper {
     //    1, 'New Tutorial', 'Local Notification', platform,
     //    payload: 'AndroidCoding.in');
 
-    //await flutterLocalNotificationsPlugin.schedule(
-    //    0, 'Test 1', 'Test 2',DateTime.now().add(const Duration(seconds: 5)) ,platform,
-    //    payload: 'Test 3');
+    await flutterLocalNotificationsPlugin.schedule(
+       0, 'Test 1', 'Test 2',DateTime.now().add(const Duration(seconds: 5)) ,platform,
+        payload: 'Test 3',androidAllowWhileIdle: true);
 
   }
   static Future<void> cancelNotif(int id) async {
@@ -137,6 +137,18 @@ class User {
 
   User(this.name, this.passwordhash, this.prog) {
     this.plannyng = [];
+  }
+
+  cancelAllNotif() {
+    print("je supp");
+    plannyng.forEach((i) {
+      i.am.forEach((j) {
+        NotificationHelper.cancelNotif(j.id);
+      });
+      i.pm.forEach((j) {
+        NotificationHelper.cancelNotif(j.id);
+      });
+    });
   }
 
   planplannyng() {

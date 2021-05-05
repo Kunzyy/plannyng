@@ -40,6 +40,8 @@ const formErrorNom = "Veuillez insérer votre nom";
 
 const buttonEditProfile = "Modifier mon profil";
 
+const cancelAllNotifText = "Supprimez les notifications à venir";
+
 // Tous les styles de texte utilisés
 
 var titreStyle = GoogleFonts.roboto();

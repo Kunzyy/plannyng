@@ -69,6 +69,13 @@ class Profile extends StatelessWidget {
               //       child: Text(buttonEditProfile)),
               // ),
             ),
+            Padding(
+              padding: paddingCard,
+              child: Center(
+                child: ElevatedButton(onPressed: ()=> user.cancelAllNotif(),
+                    child: Text(cancelAllNotifText)),
+              ),
+            ),
 
           ],
 
