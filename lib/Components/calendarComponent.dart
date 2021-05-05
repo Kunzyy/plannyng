@@ -50,12 +50,15 @@ List<Block> _getDataSource(user) {
   //   }
   // }
 
-  //meetings = user.planplannyng();
+  meetings = user.planplannyng();
 
   // print("Meetings");
   // print(meetings);
-  // Course cours = Course("test", 4, 4, 4, Colors.blue);
-  // meetings.add(Block(DateTime.now().add(Duration(minutes:1)), DateTime.now().add(Duration(minutes:10)), cours));
+  /*
+  Course cours = Course("test", 4, 4, 4, Colors.blue);
+  Block newblock = Block(DateTime.now().add(Duration(seconds:5)), DateTime.now().add(Duration(minutes:10)), cours);
+  NotificationHelper.scheduleNotifBlock(newblock);
+  meetings.add(newblock);*/
 
 
   // final course1 = Course("course1", 2, 15, 3);
@@ -84,9 +87,9 @@ class _CalendarComponentState extends State<CalendarComponent> {
     void calendarTapped(CalendarTapDetails calendarTapDetails) {
       if (calendarTapDetails.targetElement == CalendarElement.appointment) {
         Block appointment = calendarTapDetails.appointments[0];
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => EventPage(appointment:appointment)),
+          MaterialPageRoute(builder: (context) => EventPage(user:user,appointment:appointment)),
         );
       }
     }
