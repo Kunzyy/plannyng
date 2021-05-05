@@ -76,8 +76,10 @@ Future<void> confirmPlan(context, newContext, user, dateDebut, dateFin, heureJou
   settings.hourperday = heureJour;
   settings.start = toToD(heureDebut);
   settings.finish = toToD(heureFin);
-  settings.nbrbreak = nombrePauses;
-  settings.durbreak = dureePauses;
+  settings.nbrbreak_am = nombrePauses;
+  settings.durbreak_am = dureePauses;
+  settings.nbrbreak_pm = nombrePauses;
+  settings.durbreak_pm = dureePauses;
   settings.lunchbegin = toToD(heureDebutLunch);
   settings.lunchend = toToD(heureFinLunch);
 

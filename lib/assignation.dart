@@ -52,15 +52,15 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
     DateTime tmpend = new DateTime(actualday.year, actualday.month, actualday.day, settings.finish.hour, settings.finish.minute);
     DateTime lunchtime = new DateTime(actualday.year, actualday.month, actualday.day, settings.lunchbegin.hour, settings.lunchbegin.minute);
     DateTime lunchtimeend = new DateTime(actualday.year, actualday.month, actualday.day, settings.lunchend.hour, settings.lunchend.minute);
-    int blockdurmorn = (lunchtime.difference(tmpbegin).inMinutes - (settings.durbreak * settings.nbrbreak))~/(settings.nbrbreak-1);
-    int blockduraft = (tmpend.difference(lunchtimeend).inMinutes - (settings.durbreak * settings.nbrbreak))~/(settings.nbrbreak-1);
+    int blockdurmorn = (lunchtime.difference(tmpbegin).inMinutes - (settings.durbreak_am * settings.nbrbreak_am))~/(settings.nbrbreak_am + 1);
+    int blockduraft = (tmpend.difference(lunchtimeend).inMinutes - (settings.durbreak_pm * settings.nbrbreak_pm))~/(settings.nbrbreak_pm + 1);
     user.plannyng.add(tmpday);
 
     while(lunchtime.difference(tmpbegin) > Duration(minutes :0)){
       DateTime blockend = tmpbegin.add(Duration(minutes: blockdurmorn));
       Block tmp = Block(tmpbegin, blockend);
       user.plannyng[i].am.add(tmp);
-      tmpbegin = blockend.add(Duration(minutes: settings.durbreak));
+      tmpbegin = blockend.add(Duration(minutes: settings.durbreak_am));
     }
 
     tmpbegin = lunchtimeend;
@@ -69,7 +69,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
       DateTime blockend = tmpbegin.add(Duration(minutes: blockduraft));
       Block tmp = Block(tmpbegin, blockend);
       user.plannyng[i].pm.add(tmp);
-      tmpbegin = blockend.add(Duration(minutes: settings.durbreak));
+      tmpbegin = blockend.add(Duration(minutes: settings.durbreak_pm));
     }
   }
 

@@ -193,8 +193,10 @@ class Settings {
   int hourperday;
   TimeOfDay start;
   TimeOfDay finish;
-  int nbrbreak;
-  int durbreak;
+  int nbrbreak_am;
+  int durbreak_am;
+  int nbrbreak_pm;
+  int durbreak_pm;
   TimeOfDay lunchbegin;
   TimeOfDay lunchend;
 }
