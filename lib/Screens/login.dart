@@ -14,15 +14,12 @@ class Login extends StatefulWidget {
 
   int wantDisconnect;
 
-  Login({ @required this.wantDisconnect, Key key,}) : super(key:key);
+  Login({ @required this.wantDisconnect, Key key}) : super(key: key);
   @override
-  _LoginState createState() => _LoginState(wantDisconnect);
+  _LoginState createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
-
-  int wantDisconnect;
-  _LoginState(wantDisconnect);
 
   final dbHelper = DatabaseHelper.instance;
   final _formKey = GlobalKey<FormState>();
@@ -32,9 +29,8 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    //print(wantDisconnect);
+    int wantDisconnect = widget.wantDisconnect;
     if(wantDisconnect == 1) {
-      print(wantDisconnect);
       _logoutUser(idLoggedIn);
       idLoggedIn = null;
     }
@@ -185,8 +181,7 @@ class _LoginState extends State<Login> {
     return id;
   }
 
-  Future<void> _logoutUser(int id) {
-
-    dbHelper.logout(id);
+  Future<void> _logoutUser(int id) async {
+    await dbHelper.logout(id);
   }
 }

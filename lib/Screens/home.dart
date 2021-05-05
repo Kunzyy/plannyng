@@ -29,8 +29,6 @@ class _HomeState extends State<Home> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             user = snapshot.data;
-            print("Here");
-            print(user.name);
             return Scaffold(
               drawer: DrawerComponent(user: user),
               appBar: AppBar(
@@ -75,7 +73,6 @@ class _HomeState extends State<Home> {
 
 
   Future<User> _getUser(int id) async {
-    print(user.name);
     if (user.name != "") {
       return user;
     }

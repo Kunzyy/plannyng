@@ -27,7 +27,6 @@ class _PlannyngState extends State<Plannyng> {
   }
   @override
   Widget build(BuildContext context) {
-    User user;
     return new FutureBuilder(
       future: _checkIsConnected(),
       builder: (context, snapshot){
