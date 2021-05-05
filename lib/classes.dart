@@ -87,6 +87,12 @@ class Progression {
   Progression(this.course, [this.prog_exo, this.prog_theory, this.interest]){
     this.time_left_exo = this.course.hours_exo;
     this.time_left_theory = this.course.hours_theory;
+    if (this.prog_exo == null) {
+      this.prog_exo = 0;
+    }
+    if (this.prog_theory == null) {
+      this.prog_theory = 0;
+    }
     //
   }
 }
