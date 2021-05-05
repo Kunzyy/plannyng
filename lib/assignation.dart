@@ -96,5 +96,17 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
       }
     }
   }
+  for(var i =0; i < user.plannyng.length; i++){
+    user.plannyng[i].am.forEach((element) {
+      if (element.course == null){
+        element.course = Course("Pause", 1, 1, 1);
+      }
+    });
+    user.plannyng[i].pm.forEach((element) {
+      if (element.course == null){
+        element.course = Course("Pause", 1, 1, 1);
+      }
+    });
+  }
   //Ez pez lem squez? A complexifier pour de meilleurs résultats
 }
