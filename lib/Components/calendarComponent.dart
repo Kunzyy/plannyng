@@ -54,9 +54,10 @@ List<Block> _getDataSource(user) {
 
   // print("Meetings");
   // print(meetings);
-
+  
   Course cours = Course("test", 4, 4, 4, Colors.blue);
   Block newblock = Block(DateTime.now().add(Duration(seconds:5)), DateTime.now().add(Duration(minutes:10)), cours);
+  newblock.id = 420;
   NotificationHelper.scheduleNotifBlock(newblock);
   meetings.add(newblock);
 
