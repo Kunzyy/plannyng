@@ -126,3 +126,15 @@ TimeOfDay toToD(String time) {
   TimeOfDay ToD = TimeOfDay(hour: int.parse(timeToList[0]), minute: int.parse(timeToList[1]));
   return ToD;
 }
+
+bool isEmail(String string) {
+  const pattern = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
+  final regExp = RegExp(pattern);
+
+  if (!regExp.hasMatch(string)) {
+    return false;
+  }
+  else {
+    return true;
+  }
+}

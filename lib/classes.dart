@@ -33,7 +33,6 @@ class Progression {
   Progression(this.course, [this.prog_exo, this.prog_theory, this.interest]){
     this.time_left_exo = this.course.hours_exo;
     this.time_left_theory = this.course.hours_theory;
-
     //
   }
 }
@@ -91,13 +90,15 @@ class User {
   listeStrings() {
     List<String> listeStringHeures = [];
     List<String> listeStringRepart = [];
+    List<String> listeCours = [];
 
     for (var i = 0; i < prog.length; i++) {
       listeStringHeures.add(prog[i].course.stringHours());
       listeStringRepart.add(prog[i].course.stringRepartition());
+      listeCours.add(prog[i].course.name);
     }
 
-    return [listeStringHeures, listeStringRepart];
+    return [listeStringHeures, listeStringRepart, listeCours];
   }
 
   progUpdate () {

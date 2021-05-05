@@ -10,15 +10,16 @@ import 'package:plannyng/classes.dart';
 
 class Home extends StatefulWidget {
   User user;
+  Home({ @required this.user, Key key,}) : super(key:key);
 
   @override
-  _HomeState createState() => _HomeState();
+  _HomeState createState() => _HomeState(user);
 }
 
 class _HomeState extends State<Home> {
-
   final dbHelper = DatabaseHelper.instance;
   User user;
+  _HomeState(this.user);
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +32,8 @@ class _HomeState extends State<Home> {
                 constraints: BoxConstraints.expand(),
                 decoration: backgroundDeco,
                 child: Container(
-
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width - 40.0,
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .height - 40.0,
-
+                  width: MediaQuery.of(context).size.width - 40.0,
+                  height: MediaQuery.of(context).size.height - 40.0,
                   child: CalendarComponent(user: user)
                 ),
             );
@@ -65,7 +58,12 @@ class _HomeState extends State<Home> {
   }
 
   Future<User> _getUser(int id) async {
-    return await dbHelper.getUser(id);
+    if (user != User("", "", [])) {
+      return user;
+    }
+    else{
+      return await dbHelper.getUser(id);
+    }
   }
 }
 

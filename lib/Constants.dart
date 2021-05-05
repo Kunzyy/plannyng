@@ -11,7 +11,6 @@ const otherColor = Color(0xff936DD7);
 const testcolor = 0xff64F5AD;
 const testColor = Color(testcolor);
 
-
 // Paramètres Opti
 
 int heureJourOpti = 10;

@@ -5,6 +5,8 @@ import '../Constants.dart';
 
 import 'signIn.dart';
 import 'home.dart';
+import 'package:plannyng/classes.dart';
+import 'package:plannyng/functionsWidgets.dart';
 
 
 class Login extends StatefulWidget {
@@ -69,6 +71,9 @@ class _LoginState extends State<Login> {
                           if (value.isEmpty) {
                             return formErrorMail;
                           }
+                          if(isEmail(value) == false){
+                            return "Cette adresse n'est pas valide";
+                          }
                           return null;
                         },
                       ),
@@ -117,7 +122,7 @@ class _LoginState extends State<Login> {
                               if(id != null){
                                 idLoggedIn = id;
                                 dynamic newRoute = MaterialPageRoute(
-                                    builder: (context) => Home());
+                                    builder: (context) => Home(user:User("", "", [])));
                                 Navigator.pushReplacement(context, newRoute);
                               }
                               else{
@@ -125,7 +130,7 @@ class _LoginState extends State<Login> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                         content:
-                                        Text("Accès réfusé")));
+                                        Text("Accès refusé")));
                               }
                             }
                           },
