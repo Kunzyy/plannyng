@@ -87,8 +87,13 @@ const backgroundDeco = BoxDecoration(
 const paddingCard = EdgeInsets.all(8.0);
 const largePadding = EdgeInsets.all(30.0);
 
-double widthForm = 200.0;
-double widthText = 150.0;
+double widthForm(context) {
+  return 2*((MediaQuery.of(context).size.width - 20.0) / 3) ;
+}
+double widthText(context) {
+  return ((MediaQuery.of(context).size.width - 20.0) / 3) ;
+}
+
 
 var appTheme = ThemeData(
   primaryColor: primaryColor,

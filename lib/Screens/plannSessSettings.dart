@@ -62,10 +62,10 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                           children: [
                             Container(
                               child: Text(etiquettesForm[0]),
-                              width: widthText,
+                              width: widthText(context),
                             ),
                             Container(
-                              width: widthForm,
+                              width: widthForm(context),
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   errorMaxLines: 2,
@@ -100,10 +100,10 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                           children: [
                             Container(
                               child: Text(etiquettesForm[1]),
-                              width: widthText,
+                              width: widthText(context),
                             ),
                             Container(
-                              width: widthForm,
+                              width: widthForm(context),
                               child: DateTimePicker(
                                 decoration: InputDecoration(
                                   errorMaxLines: 2,
@@ -134,10 +134,10 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                           children: [
                             Container(
                               child: Text(etiquettesForm[2]),
-                              width: widthText,
+                              width: widthText(context),
                             ),
                             Container(
-                              width: widthForm,
+                              width: widthForm(context),
                               child: DateTimePicker(
                                 decoration: InputDecoration(
                                   errorMaxLines: 2,
@@ -169,10 +169,10 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                           children: [
                             Container(
                               child: Text(etiquettesForm[3]),
-                              width: widthText,
+                              width: widthText(context),
                             ),
                             Container(
-                              width: widthForm,
+                              width: widthForm(context),
 
                               child: TextFormField(
                                 decoration: InputDecoration(
@@ -205,10 +205,10 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                           children: [
                             Container(
                               child: Text(etiquettesForm[4]),
-                              width: widthText,
+                              width: widthText(context),
                             ),
                             Container(
-                              width: widthForm,
+                              width: widthForm(context),
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   errorMaxLines: 2,
@@ -242,10 +242,10 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                           children: [
                             Container(
                               child: Text(etiquettesForm[3]),
-                              width: widthText,
+                              width: widthText(context),
                             ),
                             Container(
-                              width: widthForm,
+                              width: widthForm(context),
 
                               child: TextFormField(
                                 decoration: InputDecoration(
@@ -278,10 +278,10 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                           children: [
                             Container(
                               child: Text(etiquettesForm[4]),
-                              width: widthText,
+                              width: widthText(context),
                             ),
                             Container(
-                              width: widthForm,
+                              width: widthForm(context),
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   errorMaxLines: 2,
@@ -314,11 +314,11 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                         child: Row(
                           children: [
                             Container(
-                              width: widthText,
+                              width: widthText(context),
                               child: Text(etiquettesForm[5]),
                             ),
                             Container(
-                              width: widthForm,
+                              width: widthForm(context),
                               child: DateTimePicker(
                                 decoration: InputDecoration(
                                   errorMaxLines: 2,
@@ -352,11 +352,11 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                         child: Row(
                           children: [
                             Container(
-                              width: widthText,
+                              width: widthText(context),
                               child: Text(etiquettesForm[6]),
                             ),
                             Container(
-                              width: widthForm,
+                              width: widthForm(context),
                               child: DateTimePicker(
                                 decoration: InputDecoration(
                                   errorMaxLines: 2,

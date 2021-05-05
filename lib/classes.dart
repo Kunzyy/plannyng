@@ -16,7 +16,7 @@ class NotificationHelper {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
   static final android = new AndroidInitializationSettings('@mipmap/ic_launcher');
   static final iOS = new IOSInitializationSettings();
-  static final initSetttings = new InitializationSettings(android, iOS);
+  static final initSetttings = new InitializationSettings(android:android, iOS: iOS);
 
   static Future<void> init() async {
     print("notif init");
@@ -39,11 +39,11 @@ class NotificationHelper {
     'channel id',
     'channel name',
     'channel description',
-    priority: Priority.High,
-    importance: Importance.Max
+    priority: Priority.high,
+    importance: Importance.high
   );
   static final _iOSNotificationDetails = new IOSNotificationDetails();
-  static final platform = new NotificationDetails(_androidNotificationDetails, _iOSNotificationDetails);
+  static final platform = new NotificationDetails(android: _androidNotificationDetails, iOS: _iOSNotificationDetails);
   static Future<void> scheduleNotifBlock(Block block) async {
     print("hello notif");
     //await flutterLocalNotificationsPlugin.show(

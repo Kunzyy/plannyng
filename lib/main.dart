@@ -34,12 +34,14 @@ class _PlannyngState extends State<Plannyng> {
         if(snapshot.hasData){
           idLoggedIn = snapshot.data;
           return MaterialApp(
-            title: "Plannyng",
+              debugShowCheckedModeBanner: false,
+              title: "Plannyng",
             home: Home(user: User("", "", [])),
             theme: appTheme);
         }else{
           return MaterialApp(
-              title: "Plannyng",
+            debugShowCheckedModeBanner: false,
+            title: "Plannyng",
             home: Login(wantDisconnect: 0),
             theme: appTheme);
         }
