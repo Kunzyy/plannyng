@@ -73,6 +73,7 @@ class User {
       plannedplannyng += plannyng[i].am;
       plannedplannyng += plannyng[i].pm;
     }
+    return plannedplannyng;
   }
 
   listeStrings() {
