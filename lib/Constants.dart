@@ -13,6 +13,14 @@ const secondaryColor = Color(0xffD76D7C);
 const accentColor = Color(0xffB1D76D);
 const otherColor = Color(0xff936DD7);
 
+const cours1 = Color(0xff64F5AD);
+const cours2 = Color(0xffEFB0F7);
+const cours3 = Color(0xffC73080);
+const cours4 = Color(0xffC0F564);
+const cours5 = Color(0xffE63959);
+const cours6 = Color(0xff56BCDB);
+
+
 // Paramètres Opti
 
 int heureJourOpti = 10;
@@ -120,7 +128,7 @@ var listeCours = ["Analyse 2", "Algèbre 2", "Mecara Q2", "Physique Q2", "Chimie
 var heuresCoursTheory = [14, 10, 14, 14, 14, 3, 5, 5, 5];
 var heuresCoursExo= [14, 10, 6, 14, 7, 2, 2, 0, 0];
 var repartCours = [50, 50, 30, 50, 65, 50, 67, 100, 100];
-var couleurCours = [];
+var couleurCours = [primaryColor, secondaryColor, accentColor, otherColor, cours1, cours2, cours3, cours4, cours5, cours6];
 
 var valeursProfil = ["Agathe Moineau", "Umons", "Faculté Polytechnique de Mons", "Ingénieur civil orientation générale", "BA1" ];
 var etiquettesProfil = ["Etablissement", "Faculté", "Cursus", "Année d'étude"];

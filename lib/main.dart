@@ -10,8 +10,6 @@ import 'classes.dart';
 
 bool connected = true;
 
-
-
 void main() {
   initializeDateFormatting().then((_) => runApp(Plannyng()));
 }

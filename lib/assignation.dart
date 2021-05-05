@@ -11,6 +11,8 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
   List<int> toassign_theory = [];
   bool warning = false;
 
+  print(settings.hourperday * duration);
+
   //On regarde le nombre d'heure à assigner par cours
   for(var i = 0; i < user.prog.length; i++){
 
@@ -71,13 +73,13 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
     }
   }
 
-  //On assigne les cours aux events et on décrémente la valeur à assigner jusqu'à ne plus rien avoir à assigner
+  //On assigne les co urs aux events et on décrémente la valeur à assigner jusqu'à ne plus rien avoir à assigner
   for(var i =0; i < user.plannyng.length; i++){
     Course morningcourse = Course("none", 1, 1, 1, Colors.white);
     for (var p = 0; p < user.prog.length; p++){
       if (toassign_exo[p] > 0){
         user.plannyng[i].am.forEach((element){
-          element.course = user.prog[p].course;
+          element.setCourse(user.prog[p].course);
           element.exo = true;
           toassign_exo[p] -= element.finish.difference(element.start).inMinutes;
         });
@@ -88,7 +90,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
     for (var p = 0; p < user.prog.length; p++){
       if ((toassign_theory[p] > 0) && (user.prog[p].course != morningcourse)){
         user.plannyng[i].pm.forEach((element){
-          element.course = user.prog[p].course;
+          element.setCourse(user.prog[p].course);
           element.exo = false;
           toassign_theory[p] -= element.finish.difference(element.start).inMinutes;
         });
@@ -99,12 +101,12 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
   for(var i =0; i < user.plannyng.length; i++){
     user.plannyng[i].am.forEach((element) {
       if (element.course == null){
-        element.course = Course("Pause", 1, 1, 1);
+        element.setCourse(Course("Pause", 1, 1, 1, Colors.black12));
       }
     });
     user.plannyng[i].pm.forEach((element) {
       if (element.course == null){
-        element.course = Course("Pause", 1, 1, 1);
+        element.setCourse(Course("Pause", 1, 1, 1, Colors.black12));
       }
     });
   }

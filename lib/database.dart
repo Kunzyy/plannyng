@@ -5,7 +5,7 @@ import 'package:plannyng/Constants.dart';
 User getUser() {
   List<Progression> coursList = [];
   for (var i = 0; i < listeCours.length ; i ++) {
-    Course tmp = Course(listeCours[i], repartCours[i], heuresCoursExo[i], heuresCoursTheory[i]);
+    Course tmp = Course(listeCours[i], repartCours[i], heuresCoursExo[i], heuresCoursTheory[i], couleurCours[i]);
     Progression progtmp = Progression(tmp);
     coursList.add(progtmp);
   }

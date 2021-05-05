@@ -45,9 +45,18 @@ class Block {
   Color background;
   bool exo;
   bool done; //true if done
-  Block(this.start, this.finish, [this.course, this.background, this.exo]) {
-    // Code if needed.
-    this.background = Colors.blue;
+  Block(this.start, this.finish, [this.course, this.exo]) {
+    if(this.course != null) {
+      this.background = course.backgroundColor;
+    }
+    else {
+      this.background = primaryColor;
+
+    }
+  }
+  setCourse (course) {
+    this.course = course;
+    this.background = course.backgroundColor;
   }
 }
 
