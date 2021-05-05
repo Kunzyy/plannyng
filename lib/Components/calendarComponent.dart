@@ -50,7 +50,7 @@ List<Block> _getDataSource(user) {
   //   }
   // }
 
-  //meetings = user.planplannyng();
+  meetings = user.planplannyng();
 
   // print("Meetings");
   // print(meetings);
@@ -84,9 +84,9 @@ class _CalendarComponentState extends State<CalendarComponent> {
     void calendarTapped(CalendarTapDetails calendarTapDetails) {
       if (calendarTapDetails.targetElement == CalendarElement.appointment) {
         Block appointment = calendarTapDetails.appointments[0];
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => EventPage(appointment:appointment)),
+          MaterialPageRoute(builder: (context) => EventPage(user:user,appointment:appointment)),
         );
       }
     }
