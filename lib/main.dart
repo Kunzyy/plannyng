@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:plannyng/classes.dart';
 import 'package:plannyng/database_helper.dart';
 
 import 'Screens/home.dart';
@@ -19,10 +20,13 @@ class Plannyng extends StatefulWidget {
 }
 
 class _PlannyngState extends State<Plannyng> {
-
+  @override
+  void initState() {
+    super.initState();
+    NotificationHelper.init();
+  }
   @override
   Widget build(BuildContext context) {
-    User user;
     return new FutureBuilder(
       future: _checkIsConnected(),
       builder: (context, snapshot){
