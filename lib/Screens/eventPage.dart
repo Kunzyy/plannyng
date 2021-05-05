@@ -2,23 +2,32 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:plannyng/Constants.dart';
 import 'package:plannyng/classes.dart';
+import 'package:plannyng/Screens/home.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class EventPage extends StatefulWidget {
   Block appointment;
-  EventPage({ @required this.appointment, Key key1,}) : super(key:key1);
+  User user;
+  EventPage({
+    @required this.user,
+    Key key,
+    @required this.appointment,
+    Key key1,
+  }) : super(key: key);
 
   @override
-  _EventPage createState() => _EventPage(appointment);
+  _EventPage createState() => _EventPage(user, appointment);
 }
 
 class _EventPage extends State<EventPage> {
+  User user;
   Block appointment;
 
-  _EventPage(this.appointment);
+  _EventPage(this.user, this.appointment);
 
-  void changeColor(Color color) => setState(() => appointment.course.backgroundColor = color);
+  void changeColor(Color color) =>
+      setState(() => appointment.course.backgroundColor = color);
 
   @override
   Widget build(BuildContext context) {
@@ -82,13 +91,12 @@ class _EventPage extends State<EventPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Text("Tu as respecté ton planning ?",
-                    style: titreCard),
+                child: Text("Tu as respecté ton planning ?", style: titreCard),
               ),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(primaryColor),
+                      MaterialStateProperty.all<Color>(primaryColor),
                 ),
                 onPressed: () {},
                 child: Text("J'ai fait ces heures !"),
@@ -117,8 +125,8 @@ class _EventPage extends State<EventPage> {
                       'Change moi !',
                     ),
                     style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(appointment.course.backgroundColor),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          appointment.course.backgroundColor),
                     ),
                     onPressed: () {
                       showDialog(
@@ -138,6 +146,28 @@ class _EventPage extends State<EventPage> {
                     },
                   ),
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                  "Validation",
+                  style: titreCard,
+                ),
+              ),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(primaryColor),
+                ),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Home(user: user)),
+                  );
+                },
+                child: Text("Enregistrer les notifs !"),
               ),
             ],
           ),
