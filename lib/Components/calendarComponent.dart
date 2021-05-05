@@ -36,7 +36,6 @@ class StudySessionSource extends CalendarDataSource {
 }
 
 
-
 List<Block> _getDataSource(user) {
   List<Block> meetings = <Block>[];
 

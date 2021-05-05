@@ -128,6 +128,7 @@ class _PlanSessState extends State<PlanSess> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formDatesKey.currentState.validate()) {
+                        print("test1");
                         confirmPlan(context, Home(user:user), user, toDateTime(dateDebut), toDateTime(dateFin), heureJourOpti, heureDebutOpti, heureFinOpti, nombrePausesOptiAM, dureePausesOptiAM, nombrePausesOptiPM, dureePausesOptiPM, heureDebutLunchOpti, heureFinLunchOpti);
                       }
                     },

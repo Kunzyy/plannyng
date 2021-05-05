@@ -88,16 +88,11 @@ class Block {
       this.background = primaryColor;
 
     }
-    totalId+=1;
-    id = totalId;
-    NotificationHelper.scheduleNotifBlock(this);
   }
   setCourse (course) {
     this.course = course;
     this.background = course.backgroundColor;
   }
-
-
 }
 
 class Day{

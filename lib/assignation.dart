@@ -46,6 +46,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
   }
   //Pour chaque jour, on remplit d'event sans se soucier du cours
   for(var i = 0; i < duration; i++){
+    print("TETSETSET");
     Day tmpday = Day();
     DateTime actualday = beginning.add(Duration(days: i));
     DateTime tmpbegin = new DateTime(actualday.year, actualday.month, actualday.day, settings.start.hour, settings.start.minute);
@@ -57,8 +58,11 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
     user.plannyng.add(tmpday);
 
     while(lunchtime.difference(tmpbegin) > Duration(minutes :0)){
+
       DateTime blockend = tmpbegin.add(Duration(minutes: blockdurmorn));
+
       Block tmp = Block(tmpbegin, blockend);
+
       user.plannyng[i].am.add(tmp);
       tmpbegin = blockend.add(Duration(minutes: settings.durbreak_am));
     }
@@ -66,10 +70,13 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
     tmpbegin = lunchtimeend;
 
     while(tmpend.difference(tmpbegin) > Duration(minutes :0)){
+      print("test2");
+
       DateTime blockend = tmpbegin.add(Duration(minutes: blockduraft));
       Block tmp = Block(tmpbegin, blockend);
       user.plannyng[i].pm.add(tmp);
       tmpbegin = blockend.add(Duration(minutes: settings.durbreak_pm));
+
     }
   }
 

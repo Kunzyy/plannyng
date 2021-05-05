@@ -64,7 +64,6 @@ redirect(context, newContext, [bool replacement]) {
 calculateAndRedirect(context, newContext, user, dateDebut, dateFin, settings, [bool replacement]) {
   // Calcul du planning
   createPlannyng(user, dateDebut, dateFin, settings);
-
   // Actualisation du Home
   redirect(context, newContext, true);
   return user;
