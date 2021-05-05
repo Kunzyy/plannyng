@@ -87,7 +87,7 @@ class _CalendarComponentState extends State<CalendarComponent> {
     void calendarTapped(CalendarTapDetails calendarTapDetails) {
       if (calendarTapDetails.targetElement == CalendarElement.appointment) {
         Block appointment = calendarTapDetails.appointments[0];
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => EventPage(user:user,appointment:appointment)),
         );

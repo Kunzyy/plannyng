@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:plannyng/Components/drawerComponent.dart';
 
 import 'package:plannyng/classes.dart';
@@ -14,7 +13,6 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<List> listes = user.listeStrings();
-    //user.progUpdate();
 
     return Scaffold(
       drawer: DrawerComponent(user: user),
