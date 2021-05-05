@@ -46,9 +46,9 @@ class NotificationHelper {
   static final platform = new NotificationDetails(_androidNotificationDetails, _iOSNotificationDetails);
   static Future<void> scheduleNotifBlock(Block block) async {
     print("hello notif");
-    await flutterLocalNotificationsPlugin.show(
-        1, 'New Tutorial', 'Local Notification', platform,
-        payload: 'AndroidCoding.in');
+    //await flutterLocalNotificationsPlugin.show(
+    //    1, 'New Tutorial', 'Local Notification', platform,
+    //    payload: 'AndroidCoding.in');
 
     //await flutterLocalNotificationsPlugin.schedule(
     //    0, 'Test 1', 'Test 2',DateTime.now().add(const Duration(seconds: 5)) ,platform,
