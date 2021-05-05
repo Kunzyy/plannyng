@@ -6,6 +6,7 @@ import '../Constants.dart';
 import 'login.dart';
 import 'home.dart';
 import 'package:plannyng/functionsWidgets.dart';
+import 'package:plannyng/classes.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -146,7 +147,7 @@ class _SignInState extends State<SignIn> {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               primaryColor),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           // Validate will return true if the form is valid, or false if
                           // the form is invalid.
                           if (_formKey.currentState.validate()) {
@@ -156,10 +157,20 @@ class _SignInState extends State<SignIn> {
                                     content:
                                     Text("Traitement des données")));
                             _formKey.currentState.save(); // Sauvegarde de l'état des champs
-                            _insertUser();
-                            dynamic newRoute = MaterialPageRoute(
-                                builder: (context) => Home());
-                            Navigator.pushReplacement(context, newRoute);
+                            final id = await _insertUser();
+                            if (id != null){
+                              idLoggedIn = id;
+                              dynamic newRoute = MaterialPageRoute(
+                                  builder: (context) => Home(user:User("", "", [])));
+                              Navigator.pushReplacement(context, newRoute);
+                            }
+                            else{
+                              print("Error insert database");
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content:
+                                      Text("Erreur dans l'insertion d'une nouvel utilisateur")));
+                            }
                           }
                         },
                         child: Text("M'inscrire !"),
@@ -200,7 +211,7 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  void _insertUser() async {
+  Future<int> _insertUser() async {
     // row to insert
     Map<String, dynamic> row = {
       DatabaseHelper.columnName : nom,
@@ -209,5 +220,6 @@ class _SignInState extends State<SignIn> {
     };
     final id = await dbHelper.insertUser(row);
     print('inserted row id: $id');
+    return id;
   }
 }

@@ -173,7 +173,15 @@ class DatabaseHelper {
   // inserted row.
   Future<int> insertUser(Map<String, dynamic> row) async {
     Database db = await instance.database;
-    return await db.insert(usersTable, row);
+    final id = await db.insert(usersTable, row);
+
+    //Sécurité, on déconnecte tout le monde
+    await db.rawQuery(
+        'UPDATE $usersTable SET $isConnected = 0');
+
+    await db.rawQuery(
+        'UPDATE $usersTable SET $isConnected = 1 WHERE $columnId = "$id"');
+    return id;
   }
 
   Future<int> login(Map<String, dynamic> row) async {
@@ -184,6 +192,10 @@ class DatabaseHelper {
     final id = Sqflite.firstIntValue(await db.rawQuery(
         'SELECT $columnId FROM $usersTable WHERE $columnMail = "$mail" AND $columnPassword = "$password"'));
 
+    //Sécurité, on déconnecte tout le monde
+    await db.rawQuery(
+        'UPDATE $usersTable SET $isConnected = 0');
+
     await db.rawQuery(
         'UPDATE $usersTable SET $isConnected = 1 WHERE $columnId = "$id"');
 
@@ -192,8 +204,10 @@ class DatabaseHelper {
 
   Future<void> logout(int id) async {
     Database db = await instance.database;
-    db.rawQuery(
-        'UPDATE $usersTable SET $isConnected = 0 WHERE $columnId = "$id"');
+
+    //Sécurité, on déconnecte tout le monde
+    await db.rawQuery(
+        'UPDATE $usersTable SET $isConnected = 0');
   }
 
   Future<int> checkSomeoneIsConnected() async{

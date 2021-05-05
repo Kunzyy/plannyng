@@ -16,6 +16,9 @@ class DrawerComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("menu");
+    print(user.name);
+
     List<Widget> listTiles = [];
     var listeRedirection = [Home(user:user), Profile(user:user), PlanSess(user:user),Login(wantDisconnect: 1)];
 
@@ -44,7 +47,7 @@ class DrawerComponent extends StatelessWidget {
                     height: 75.0,
                     child: ListView(
                       children : [
-                        Center(child: Text(valeursProfil[0], style: titreCard2,)),
+                        Center(child: Text(user.name, style: titreCard2,)),
                         Center(child: Text(valeursProfil[2], style: listeCard2,)),
                         Center(child: Text(valeursProfil[3], style: listeCard2,)),
                         Center(child: Text(valeursProfil[4], style: listeCard2,)),

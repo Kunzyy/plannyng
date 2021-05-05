@@ -13,9 +13,10 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    print("profil");
     print("test");
     print(user.name);
+    print(user.prog);
 
     List<List> listes = user.listeStrings();
     user.progUpdate();
