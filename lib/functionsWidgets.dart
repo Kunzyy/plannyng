@@ -68,6 +68,8 @@ calculateAndRedirect(context, newContext, dateDebut, dateFin, settings, [bool re
   User user = getUser();
   createPlannyng(user, dateDebut, dateFin, settings);
 
+
+
   // Actualisation du Home
   redirect(context, newContext, true);
 }

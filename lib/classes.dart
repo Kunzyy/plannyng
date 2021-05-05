@@ -5,11 +5,6 @@ class ProgException implements Exception {
   ProgException(this.cause);
 }
 
-class ProgException implements Exception {
-  String cause;
-  ProgException(this.cause);
-}
-
 class Course {
   String name;
   int repartition;
@@ -70,6 +65,14 @@ class User {
 
   User(this.name, this.passwordhash, this.prog) {
     this.plannyng = [];
+  }
+
+  planplannyng() {
+    List<Block> plannedplannyng = [];
+    for (var i = 0; i < this.plannyng.length; i++){
+      plannedplannyng += plannyng[i].am;
+      plannedplannyng += plannyng[i].pm;
+    }
   }
 
   listeStrings() {
