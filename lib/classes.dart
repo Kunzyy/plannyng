@@ -42,9 +42,10 @@ class Block {
   DateTime start;
   DateTime finish;
   Color background;
+  int id;
   bool exo;
   bool done; //true if done
-  Block(this.start, this.finish, [this.course, this.exo]) {
+  Block(this.start, this.finish, [this.course, this.exo, this.id]) {
     if(this.course != null) {
       this.background = course.backgroundColor;
     }
@@ -194,8 +195,10 @@ class Settings {
   int hourperday;
   TimeOfDay start;
   TimeOfDay finish;
-  int nbrbreak;
-  int durbreak;
+  int nbrbreak_am;
+  int durbreak_am;
+  int nbrbreak_pm;
+  int durbreak_pm;
   TimeOfDay lunchbegin;
   TimeOfDay lunchend;
 }
