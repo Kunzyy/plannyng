@@ -188,8 +188,8 @@ class User {
                   j.time_left_theory = 0;
                 }
               }
-              j.prog_exo = int(100*j.time_left_exo / j.course.hours_exo);
-              j.prog_theory = int(100*j.time_left_theory / j.course.hours_theory);
+              j.prog_exo =(100*j.time_left_exo / j.course.hours_exo) as int;
+              j.prog_theory = (100*j.time_left_theory / j.course.hours_theory) as int;
             }
           });
         }
@@ -223,8 +223,8 @@ class User {
                   j.time_left_theory = 0;
                 }
               }
-              j.prog_exo = int(100*j.time_left_exo / j.course.hours_exo);
-              j.prog_theory = int(100*j.time_left_theory / j.course.hours_theory);
+              j.prog_exo =(100*j.time_left_exo / j.course.hours_exo) as int;
+              j.prog_theory = (100*j.time_left_theory / j.course.hours_theory) as int;
             }
           });
         }
