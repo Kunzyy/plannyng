@@ -53,7 +53,12 @@ List<Block> _getDataSource(user) {
   //   }
   // }
 
-  meetings = user.planplannyng();
+  //meetings = user.planplannyng();
+
+  Course cours = Course("test", 4, 4, 4, Colors.blue);
+  meetings.add(Block(DateTime.now().add(Duration(seconds: 10)), DateTime.now().add(Duration(minutes:10)), cours));
+
+
   // print("Meetings");
   // print(meetings);
 

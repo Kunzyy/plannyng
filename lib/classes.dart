@@ -19,21 +19,41 @@ class NotificationHelper {
   static final initSetttings = new InitializationSettings(android, iOS);
 
   static Future<void> init() async {
-    flutterLocalNotificationsPlugin.initialize(initSetttings);
+    print("notif init");
+
+    flutterLocalNotificationsPlugin.initialize(initSetttings,
+        onSelectNotification: onSelectNotification);
     tz.initializeDatabase([]);
   }
 
+  static Future onSelectNotification(String payload) {
+    debugPrint("payload : $payload");
+    showDialog(
+      builder: (_) => new AlertDialog(
+        title: new Text('Notification'),
+        content: new Text('$payload'),
+      ),
+    );
+  }
   static final _androidNotificationDetails = AndroidNotificationDetails(
     'channel id',
     'channel name',
-    'channel description'
+    'channel description',
+    priority: Priority.High,
+    importance: Importance.Max
   );
   static final _iOSNotificationDetails = new IOSNotificationDetails();
   static final platform = new NotificationDetails(_androidNotificationDetails, _iOSNotificationDetails);
   static Future<void> scheduleNotifBlock(Block block) async {
+    print("hello notif");
+    //await flutterLocalNotificationsPlugin.show(
+    //    1, 'New Tutorial', 'Local Notification', platform,
+    //    payload: 'AndroidCoding.in');
+
     await flutterLocalNotificationsPlugin.schedule(
-        block.id, 'Plannyng', "Il est l'heure d'étudier " + block.course.name,new DateTime.now().add(const Duration(seconds: 5)) ,platform,
-        payload:"Il est l'heure d'étudier le cours " + block.course.name + " jusque "+ block.finish.toString());
+        0, 'Test 1', 'Test 2',new DateTime.now().add(const Duration(seconds: 30)) ,platform,
+        payload: 'Test 3');
+
   }
   static Future<void> cancelNotif(int id) async {
     await flutterLocalNotificationsPlugin.cancel(id);
@@ -73,9 +93,8 @@ class Progression {
 }
 
 class Block {
-  static int totalId;
-  Course course;
   int id;
+  Course course;
   DateTime start;
   DateTime finish;
   Color background;
@@ -87,18 +106,14 @@ class Block {
     }
     else {
       this.background = primaryColor;
-
     }
-    totalId+=1;
-    id = totalId;
+    id = 0;
     NotificationHelper.scheduleNotifBlock(this);
   }
   setCourse (course) {
     this.course = course;
     this.background = course.backgroundColor;
   }
-
-
 }
 
 class Day{
