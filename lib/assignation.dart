@@ -33,7 +33,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
     if (user.prog[i].time_left_theory * 60> avtime){
 
       //Horaire impossible
-      toassign_theory.add(avtime);
+      toassign_theory.add(avtime  * 60);
       avtime = 0;
       warning = true;
     }
@@ -87,6 +87,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
       if (toassign_exo[p] > 0){
         user.plannyng[i].am.forEach((element){
           element.setCourse(user.prog[p].course);
+          NotificationHelper.scheduleNotifBlock(element);
           element.exo = true;
           toassign_exo[p] -= element.finish.difference(element.start).inMinutes;
         });
@@ -98,6 +99,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
       if ((toassign_theory[p] > 0) && (user.prog[p].course != morningcourse)){
         user.plannyng[i].pm.forEach((element){
           element.setCourse(user.prog[p].course);
+          NotificationHelper.scheduleNotifBlock(element);
           element.exo = false;
           toassign_theory[p] -= element.finish.difference(element.start).inMinutes;
         });
@@ -109,11 +111,13 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
     user.plannyng[i].am.forEach((element) {
       if (element.course == null){
         element.setCourse(Course("Pause", 1, 1, 1, Colors.black12));
+        NotificationHelper.scheduleNotifBlock(element);
       }
     });
     user.plannyng[i].pm.forEach((element) {
       if (element.course == null){
         element.setCourse(Course("Pause", 1, 1, 1, Colors.black12));
+        NotificationHelper.scheduleNotifBlock(element);
       }
     });
   }
