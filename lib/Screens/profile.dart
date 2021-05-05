@@ -13,13 +13,8 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("profil");
-    print("test");
-    print(user.name);
-    print(user.prog);
-
     List<List> listes = user.listeStrings();
-    user.progUpdate();
+    //user.progUpdate();
 
     return Scaffold(
       drawer: DrawerComponent(user: user),
@@ -36,9 +31,9 @@ class Profile extends StatelessWidget {
         decoration: backgroundDeco,
         child: ListView(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 14,
-            ),
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.height / 14,
+            // ),
             Card(
               child: Padding(
                   padding: paddingCard,
@@ -55,14 +50,14 @@ class Profile extends StatelessWidget {
                 ),
               ),
             ),
-            // Card(
-            //   child: Padding(
-            //     padding: paddingCard,
-            //     child: Column(
-            //       children: createCard("Ma progression", listeCours, listeProg(user)),
-            //     ),
-            //   ),
-            // ),
+            Card(
+              child: Padding(
+                padding: paddingCard,
+                child: Column(
+                  children: createCard("Ma progression", listeCours, listeProg(user)),
+                ),
+              ),
+            ),
 
             Padding(
               padding: paddingCard,
