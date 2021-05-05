@@ -27,20 +27,21 @@ class _PlannyngState extends State<Plannyng> {
   }
   @override
   Widget build(BuildContext context) {
+
     return new FutureBuilder(
       future: _checkIsConnected(),
       builder: (context, snapshot){
         if(snapshot.hasData){
           idLoggedIn = snapshot.data;
           return MaterialApp(
-              title: "Plannyng",
-              home: Home(user: User("", "", [])),
-              theme: appTheme);
+            title: "Plannyng",
+            home: Home(user: User("", "", [])),
+            theme: appTheme);
         }else{
           return MaterialApp(
               title: "Plannyng",
-              home: Login(wantDisconnect: 0),
-              theme: appTheme);
+            home: Login(wantDisconnect: 0),
+            theme: appTheme);
         }
       });
   }

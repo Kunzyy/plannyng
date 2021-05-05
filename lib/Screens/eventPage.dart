@@ -98,7 +98,9 @@ class _EventPage extends State<EventPage> {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(primaryColor),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  appointment.done = true;
+                },
                 child: Text("J'ai fait ces heures !"),
               ),
               Padding(
