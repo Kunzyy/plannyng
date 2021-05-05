@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'classes.dart';
 
 //Modélisation aka temporaire
@@ -71,7 +73,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
 
   //On assigne les cours aux events et on décrémente la valeur à assigner jusqu'à ne plus rien avoir à assigner
   for(var i =0; i < user.plannyng.length; i++){
-    Course morningcourse = Course("none", 1, 1, 1);
+    Course morningcourse = Course("none", 1, 1, 1, Colors.white);
     for (var p = 0; p < user.prog.length; p++){
       if (toassign_exo[p] > 0){
         user.plannyng[i].am.forEach((element){

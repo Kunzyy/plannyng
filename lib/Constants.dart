@@ -120,6 +120,7 @@ var listeCours = ["Analyse 2", "Algèbre 2", "Mecara Q2", "Physique Q2", "Chimie
 var heuresCoursTheory = [14, 10, 14, 14, 14, 3, 5, 5, 5];
 var heuresCoursExo= [14, 10, 6, 14, 7, 2, 2, 0, 0];
 var repartCours = [50, 50, 30, 50, 65, 50, 67, 100, 100];
+var couleurCours = [];
 
 var valeursProfil = ["Agathe Moineau", "Umons", "Faculté Polytechnique de Mons", "Ingénieur civil orientation générale", "BA1" ];
 var etiquettesProfil = ["Etablissement", "Faculté", "Cursus", "Année d'étude"];

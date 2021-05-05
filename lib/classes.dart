@@ -11,7 +11,8 @@ class Course {
   int repartition;
   int hours_exo;
   int hours_theory;
-  Course(this.name, this.repartition, this.hours_exo, this.hours_theory) {
+  Color backgroundColor;
+  Course(this.name, this.repartition, this.hours_exo, this.hours_theory, this.backgroundColor) {
     // Code if needed.
   }
   stringRepartition() {
@@ -46,6 +47,7 @@ class Block {
   bool done; //true if done
   Block(this.start, this.finish, [this.course, this.background, this.exo]) {
     // Code if needed.
+    this.background = Colors.blue;
   }
 }
 
