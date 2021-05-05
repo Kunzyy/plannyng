@@ -5,8 +5,6 @@ import 'package:plannyng/classes.dart';
 import 'package:plannyng/Constants.dart';
 import 'package:plannyng/Screens/eventPage.dart';
 
-import '';
-
 class StudySessionSource extends CalendarDataSource {
   StudySessionSource(List<Block> source) {
     appointments = source;
@@ -31,7 +29,7 @@ class StudySessionSource extends CalendarDataSource {
 
   @override
   Color getColor(int index) {
-    return appointments[index].background;
+    return appointments[index].course.backgroundColor;
   }
 }
 
@@ -54,10 +52,6 @@ List<Block> _getDataSource(user) {
   // }
 
   //meetings = user.planplannyng();
-
-  Course cours = Course("test", 4, 4, 4, Colors.blue);
-  meetings.add(Block(DateTime.now().add(Duration(seconds: 10)), DateTime.now().add(Duration(minutes:10)), cours));
-
 
   // print("Meetings");
   // print(meetings);

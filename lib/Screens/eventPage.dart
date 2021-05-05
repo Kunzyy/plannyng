@@ -2,11 +2,23 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:plannyng/Constants.dart';
 import 'package:plannyng/classes.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class EventPage extends StatelessWidget {
+class EventPage extends StatefulWidget {
+  Block appointment;
+  EventPage({ @required this.appointment, Key key1,}) : super(key:key1);
+
+  @override
+  _EventPage createState() => _EventPage(appointment);
+}
+
+class _EventPage extends State<EventPage> {
   Block appointment;
 
-  EventPage({this.appointment});
+  _EventPage(this.appointment);
+
+  void changeColor(Color color) => setState(() => appointment.course.backgroundColor = color);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +54,7 @@ class EventPage extends StatelessWidget {
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(primaryColor),
+                      MaterialStateProperty.all<Color>(primaryColor),
                 ),
                 onPressed: () {},
                 child: Text("Je veux changer l'heure de début !"),
@@ -63,7 +75,7 @@ class EventPage extends StatelessWidget {
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(primaryColor),
+                      MaterialStateProperty.all<Color>(primaryColor),
                 ),
                 onPressed: () {},
                 child: Text("Je veux changer l'heure de fin !"),
@@ -78,7 +90,7 @@ class EventPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Container(
-                  color: appointment.background,
+                  color: appointment.course.backgroundColor,
                   width: 48.0,
                   height: 48.0,
                 ),
@@ -87,30 +99,30 @@ class EventPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Container(
-                  child: DropdownButton<Color>(
-                    hint: Text('Sélectionnez une couleur'),
-                    items: <Color>[
-                      primaryColor,
-                      secondaryColor,
-                      accentColor,
-                      otherColor
-                    ].map((Color value) {
-                      //La fonction crée un objet qui aura la même valeur et le même texte, à partir du tableau d'objet
-                      return new DropdownMenuItem<Color>(
-                        value: value,
-                        child: Center(
-                          child: new ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(value),
+                  child: new ElevatedButton(
+                    child: const Text(
+                      'Change moi !',
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(appointment.course.backgroundColor),
+                    ),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Select a color'),
+                            content: SingleChildScrollView(
+                              child: BlockPicker(
+                                pickerColor: appointment.course.backgroundColor,
+                                onColorChanged: changeColor,
+                              ),
                             ),
-                            onPressed: () {},
-                            child: Text("Je veux celle-ci !!!"),
-                          ),
-                        ),
+                          );
+                        },
                       );
-                    }).toList(),
-                    onChanged: (_) {},
+                    },
                   ),
                 ),
               ),
