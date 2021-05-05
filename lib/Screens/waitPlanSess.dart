@@ -22,13 +22,6 @@ class _WaitPlanSessState extends State<WaitPlanSess> {
           children: [
             Text(dateDebut),
             Text(dateFin),
-            Text(heureJour.toString()),
-            Text(heureDebut),
-            Text(heureFin),
-            Text(nombrePauses.toString()),
-            Text(dureePauses.toString()),
-            Text(heureDebutLunch),
-            Text(heureFinLunch),
           ],
         ),
       ),

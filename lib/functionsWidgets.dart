@@ -70,16 +70,16 @@ calculateAndRedirect(context, newContext, user, dateDebut, dateFin, settings, [b
   return user;
 }
 
-Future<void> confirmPlan(context, newContext, user, dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch) async {
+Future<void> confirmPlan(context, newContext, user, dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePausesAM, dureePausesAM, nombrePausesPM, dureePausesPM, heureDebutLunch, heureFinLunch) async {
   Settings settings = Settings();
 
   settings.hourperday = heureJour;
   settings.start = toToD(heureDebut);
   settings.finish = toToD(heureFin);
-  settings.nbrbreak_am = nombrePauses;
-  settings.durbreak_am = dureePauses;
-  settings.nbrbreak_pm = nombrePauses;
-  settings.durbreak_pm = dureePauses;
+  settings.nbrbreak_am = nombrePausesAM;
+  settings.durbreak_am = dureePausesAM;
+  settings.nbrbreak_pm = nombrePausesAM;
+  settings.durbreak_pm = dureePausesAM;
   settings.lunchbegin = toToD(heureDebutLunch);
   settings.lunchend = toToD(heureFinLunch);
 
@@ -127,4 +127,16 @@ TimeOfDay toToD(String time) {
   List<String> timeToList = time.split(":");
   TimeOfDay ToD = TimeOfDay(hour: int.parse(timeToList[0]), minute: int.parse(timeToList[1]));
   return ToD;
+}
+
+bool isEmail(String string) {
+  const pattern = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
+  final regExp = RegExp(pattern);
+
+  if (!regExp.hasMatch(string)) {
+    return false;
+  }
+  else {
+    return true;
+  }
 }

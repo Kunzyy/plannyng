@@ -6,6 +6,7 @@ import 'package:plannyng/database_helper.dart';
 import 'Screens/home.dart';
 import 'Screens/login.dart';
 import 'package:plannyng/Constants.dart';
+import 'classes.dart';
 
 bool connected = true;
 
@@ -26,6 +27,7 @@ class _PlannyngState extends State<Plannyng> {
   }
   @override
   Widget build(BuildContext context) {
+    User user;
     return new FutureBuilder(
       future: _checkIsConnected(),
       builder: (context, snapshot){
@@ -33,7 +35,7 @@ class _PlannyngState extends State<Plannyng> {
           idLoggedIn = snapshot.data;
           return MaterialApp(
               title: "Plannyng",
-              home: Home(),
+              home: Home(user: User("", "", [])),
               theme: appTheme);
         }else{
           return MaterialApp(

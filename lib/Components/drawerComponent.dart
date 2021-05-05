@@ -17,7 +17,7 @@ class DrawerComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> listTiles = [];
-    var listeRedirection = [Home(), Profile(user:user), PlanSess(user:user),Login(wantDisconnect: 1)];
+    var listeRedirection = [Home(user:user), Profile(user:user), PlanSess(user:user),Login(wantDisconnect: 1)];
 
     for (var i = 0; i < listeDrawer.length ; i ++) {
       var tmp = ListTile(

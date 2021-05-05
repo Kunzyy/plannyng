@@ -5,6 +5,7 @@ import '../Constants.dart';
 
 import 'login.dart';
 import 'home.dart';
+import 'package:plannyng/functionsWidgets.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -77,6 +78,10 @@ class _SignInState extends State<SignIn> {
                           if (value.isEmpty) {
                             return formErrorMail;
                           }
+                          if(isEmail(value) == false){
+                            return "Cette adresse n'est pas valide";
+                          }
+
                           return null;
                         },
                       ),

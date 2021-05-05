@@ -14,6 +14,7 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    print("test");
     print(user.name);
 
     List<List> listes = user.listeStrings();
@@ -41,7 +42,7 @@ class Profile extends StatelessWidget {
               child: Padding(
                   padding: paddingCard,
                   child: Column(
-                    children: createCard(valeursProfil[0], etiquettesProfil, valeursProfil.sublist(1)),
+                    children: createCard(user.name, etiquettesProfil, valeursProfil.sublist(1)),
                   )
               ),
             ),
@@ -49,7 +50,7 @@ class Profile extends StatelessWidget {
               child: Padding(
                 padding: paddingCard,
                 child: Column(
-                  children: createCard("Mes cours", listeCours, listes[0]),
+                  children: createCard("Mes cours", listes[2], listes[0]),
                 ),
               ),
             ),
