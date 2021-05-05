@@ -70,8 +70,8 @@ class User {
   planplannyng() {
     List<Block> plannedplannyng = [];
     for (var i = 0; i < this.plannyng.length; i++){
-      plannedplannyng.addAll(this.plannyng[i].am)
-      plannedplannyng.addAll(this.plannyng[i].pm)
+      plannedplannyng.addAll(this.plannyng[i].am);
+      plannedplannyng.addAll(this.plannyng[i].pm);
     }
   }
 

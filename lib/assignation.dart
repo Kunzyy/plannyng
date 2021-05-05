@@ -3,7 +3,7 @@ import 'classes.dart';
 //Modélisation aka temporaire
 void createPlannyng(User user, DateTime beginning, DateTime end, Settings settings){
 
-  int duration = end.difference(beginning).inDays;
+  int duration = end.difference(beginning).inDays + 1;
   int avtime = (settings.hourperday * duration) * 60;
   List<int> toassign_exo = [];
   List<int> toassign_theory = [];
@@ -78,7 +78,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
         user.plannyng[i].am.forEach((element){
           element.course = user.prog[p].course;
           element.exo = true;
-          toassign_exo[p] -= element.start.difference(element.finish).inMinutes;
+          toassign_exo[p] -= element.finish.difference(element.start).inMinutes;
         });
         morningcourse = user.prog[p].course;
         break;
@@ -89,7 +89,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
         user.plannyng[i].pm.forEach((element){
           element.course = user.prog[p].course;
           element.exo = false;
-          toassign_theory[p] -= element.start.difference(element.finish).inMinutes;
+          toassign_theory[p] -= element.finish.difference(element.start).inMinutes;
         });
         break;
       }
