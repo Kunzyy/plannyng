@@ -24,15 +24,15 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    var futureBuilder = new FutureBuilder(
+    return new FutureBuilder(
         future: _getUser(idLoggedIn),
         builder: (context, snapshot) {
-          if(snapshot.hasData){
+          if (snapshot.hasData) {
             user = snapshot.data;
             print("Here");
             print(user.name);
             return Scaffold(
-              drawer: DrawerComponent(user: user,),
+              drawer: DrawerComponent(user: user),
               appBar: AppBar(
                   title: Text(
                       "Mon plannyng"
@@ -41,24 +41,38 @@ class _HomeState extends State<Home> {
                   elevation: 0.0
               ),
               body: Container(
-                  constraints: BoxConstraints.expand(),
-                  decoration: backgroundDeco,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 40.0,
-                    height: MediaQuery.of(context).size.height - 40.0,
+                constraints: BoxConstraints.expand(),
+                decoration: backgroundDeco,
+                child: Container(
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width - 40.0,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height - 40.0,
                     child: CalendarComponent(user: user)
-                  ),
+                ),
               ),
             );
-          }else{
-            return new Center(
-              child: Text("Error, couldn't get user")
-              );
+          } else {
+            return new Scaffold(
+                drawer: DrawerComponent(user: user),
+                appBar: AppBar(
+                    title: Text("Mon plannyng"),
+                    backgroundColor: primaryColor,
+                    elevation: 0.0
+                ),
+                body: new Center(
+                  child: Text("Error, couldn't get user")
+                )
+            );
           }
-        });
-
-    return futureBuilder;
+        }
+    );
   }
+
 
   Future<User> _getUser(int id) async {
     print(user.name);
