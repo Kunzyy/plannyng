@@ -21,8 +21,7 @@ class NotificationHelper {
   static Future<void> init() async {
     print("notif init");
 
-    flutterLocalNotificationsPlugin.initialize(initSetttings,
-        onSelectNotification: onSelectNotification);
+    flutterLocalNotificationsPlugin.initialize(initSetttings);
     tz.initializeDatabase([]);
   }
 
