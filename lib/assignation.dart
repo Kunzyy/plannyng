@@ -57,11 +57,17 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
     int blockduraft = (tmpend.difference(lunchtimeend).inMinutes - (settings.durbreak_pm * settings.nbrbreak_pm))~/(settings.nbrbreak_pm + 1);
     user.plannyng.add(tmpday);
 
+    int blockid = 0;
+
     while(lunchtime.difference(tmpbegin) > Duration(minutes :0)){
 
       DateTime blockend = tmpbegin.add(Duration(minutes: blockdurmorn));
 
       Block tmp = Block(tmpbegin, blockend);
+
+      tmp.id = blockid;
+
+      blockid += 1;
 
       user.plannyng[i].am.add(tmp);
       tmpbegin = blockend.add(Duration(minutes: settings.durbreak_am));
@@ -74,6 +80,11 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
 
       DateTime blockend = tmpbegin.add(Duration(minutes: blockduraft));
       Block tmp = Block(tmpbegin, blockend);
+
+      tmp.id = blockid;
+
+      blockid += 1;
+
       user.plannyng[i].pm.add(tmp);
       tmpbegin = blockend.add(Duration(minutes: settings.durbreak_pm));
 
