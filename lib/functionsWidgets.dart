@@ -63,18 +63,16 @@ redirect(context, newContext, [bool replacement]) {
   }
 }
 
-calculateAndRedirect(context, newContext, dateDebut, dateFin, settings, [bool replacement]) {
+calculateAndRedirect(context, newContext, user, dateDebut, dateFin, settings, [bool replacement]) {
   // Calcul du planning
-  User user = getUser();
   createPlannyng(user, dateDebut, dateFin, settings);
-
-
 
   // Actualisation du Home
   redirect(context, newContext, true);
+  return user;
 }
 
-Future<void> confirmPlan(context, newContext, dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch) async {
+Future<void> confirmPlan(context, newContext, user, dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch) async {
   Settings settings = Settings();
 
   settings.hourperday = heureJour;
@@ -86,24 +84,24 @@ Future<void> confirmPlan(context, newContext, dateDebut, dateFin, heureJour, heu
   settings.lunchend = toToD(heureFinLunch);
 
   return showDialog<void>(
-    context: context,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("Plannyng"),
-        content: Text("Planning calculé"),
-        actions: [
-          TextButton(
-            child: Text('Annuler'),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          TextButton(
-            child: Text('Valider'),
-            onPressed: () => calculateAndRedirect(context, newContext, dateDebut, dateFin, settings),
-          )
-        ],
-      );
-    }
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Plannyng"),
+          content: Text("Planning calculé"),
+          actions: [
+            TextButton(
+              child: Text('Annuler'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+                child: Text('Valider'),
+                onPressed : () => user = calculateAndRedirect(context, newContext, user, dateDebut, dateFin, settings)
+            )
+          ],
+        );
+      }
   );
 }
 

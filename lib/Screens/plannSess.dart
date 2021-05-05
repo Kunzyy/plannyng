@@ -4,25 +4,34 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:plannyng/Components/drawerComponent.dart';
 import 'package:plannyng/Screens/plannSessSettings.dart';
 import 'package:plannyng/functionsWidgets.dart';
+import 'package:plannyng/classes.dart';
 
+import 'home.dart';
 import '../Constants.dart';
 
 String dateDebut = null;
 String dateFin = null;
 
 class PlanSess extends StatefulWidget {
+  User user;
+  PlanSess({ @required this.user, Key key,}) : super(key:key);
+
   @override
-  _PlanSessState createState() => _PlanSessState();
+  _PlanSessState createState() => _PlanSessState(user);
 }
 
 class _PlanSessState extends State<PlanSess> {
   final _formDatesKey = GlobalKey<FormState>();
 
+  User user;
+  _PlanSessState(this.user);
+
+
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      drawer: DrawerComponent(),
+      drawer: DrawerComponent(user : user),
       appBar: AppBar(
         title: Text(
             "Planifier une session"
@@ -116,7 +125,7 @@ class _PlanSessState extends State<PlanSess> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formDatesKey.currentState.validate()) {
-                        confirmPlan(context, listeRedirection[0], toDateTime(dateDebut), toDateTime(dateFin), heureJourOpti, heureDebutOpti, heureFinOpti, nombrePausesOpti, dureePausesOpti, heureDebutLunchOpti, heureFinLunchOpti);
+                        confirmPlan(context, Home(user:user), user, toDateTime(dateDebut), toDateTime(dateFin), heureJourOpti, heureDebutOpti, heureFinOpti, nombrePausesOpti, dureePausesOpti, heureDebutLunchOpti, heureFinLunchOpti);
                       }
                     },
                     child: Text("Planning optimisé",
@@ -129,7 +138,7 @@ class _PlanSessState extends State<PlanSess> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formDatesKey.currentState.validate()) {
-                        redirect(context, PlanSessSettings(), false);
+                        redirect(context, PlanSessSettings(user: user), false);
                       }
                     },
                     child: Text("Planning personnalisé",

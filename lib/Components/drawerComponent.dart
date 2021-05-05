@@ -2,11 +2,22 @@ import 'package:flutter/material.dart';
 
 import 'package:plannyng/Constants.dart';
 import 'package:plannyng/functionsWidgets.dart';
+import 'package:plannyng/classes.dart';
+
+import 'package:plannyng/Screens/home.dart';
+import 'package:plannyng/Screens/profile.dart';
+import 'package:plannyng/Screens/plannSess.dart';
+import 'package:plannyng/Screens/login.dart';
+
 
 class DrawerComponent extends StatelessWidget {
+  User user;
+  DrawerComponent({ @required this.user, Key key,}) : super(key:key);
+
   @override
   Widget build(BuildContext context) {
     List<Widget> listTiles = [];
+    var listeRedirection = [Home(user:user), Profile(user:user), PlanSess(user:user), Login()];
 
     for (var i = 0; i < listeDrawer.length ; i ++) {
       var tmp = ListTile(

@@ -52,8 +52,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
     int blockduraft = (tmpend.difference(lunchtimeend).inMinutes - (settings.durbreak * settings.nbrbreak))~/(settings.nbrbreak-1);
     user.plannyng.add(tmpday);
 
-    while(tmpbegin.difference(lunchtime) > Duration(minutes :0)){
-
+    while(lunchtime.difference(tmpbegin) > Duration(minutes :0)){
       DateTime blockend = tmpbegin.add(Duration(minutes: blockdurmorn));
       Block tmp = Block(tmpbegin, tmpend);
       user.plannyng[i].am.add(tmp);
@@ -62,14 +61,14 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
 
     tmpbegin = lunchtimeend;
 
-    while(tmpbegin.difference(tmpend) > Duration(minutes :0)){
-
+    while(tmpend.difference(tmpbegin) > Duration(minutes :0)){
       DateTime blockend = tmpbegin.add(Duration(minutes: blockduraft));
       Block tmp = Block(tmpbegin, tmpend);
       user.plannyng[i].pm.add(tmp);
       tmpbegin = blockend.add(Duration(minutes: settings.durbreak));
     }
   }
+
   //On assigne les cours aux events et on décrémente la valeur à assigner jusqu'à ne plus rien avoir à assigner
   for(var i =0; i < user.plannyng.length; i++){
     Course morningcourse = Course("none", 1, 1, 1);

@@ -5,6 +5,8 @@ import 'plannSess.dart';
 import 'package:plannyng/functionsWidgets.dart';
 
 import '../Constants.dart';
+import 'package:plannyng/classes.dart';
+import 'package:plannyng/Screens/home.dart';
 
 int heureJour = 0;
 String heureDebut = "00:00";
@@ -16,12 +18,19 @@ String heureFinLunch = "24:00";
 
 
 class PlanSessSettings extends StatefulWidget {
+  User user;
+  PlanSessSettings({ @required this.user, Key key,}) : super(key:key);
+
   @override
-  _PlanSessSettingsState createState() => _PlanSessSettingsState();
+  _PlanSessSettingsState createState() => _PlanSessSettingsState(user);
 }
 
 class _PlanSessSettingsState extends State<PlanSessSettings> {
   final _formSettingsKey = GlobalKey<FormState>();
+
+  User user;
+  _PlanSessSettingsState(this.user);
+
 
   @override
   Widget build(BuildContext context) {
@@ -307,7 +316,7 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                           print(timeOfDay(heureFin).toString());
 
                           if (_formSettingsKey.currentState.validate()) {
-                            confirmPlan(context, listeRedirection[0], toDateTime(dateDebut), toDateTime(dateFin), heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch);
+                            confirmPlan(context, Home(user:user), user,toDateTime(dateDebut), toDateTime(dateFin), heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch);
                           }
                         },
                         child: Text("Valider les paramètres",

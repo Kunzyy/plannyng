@@ -5,6 +5,8 @@ import 'package:plannyng/classes.dart';
 import 'package:plannyng/Constants.dart';
 import 'package:plannyng/Screens/eventPage.dart';
 
+import '';
+
 class StudySessionSource extends CalendarDataSource {
   StudySessionSource(List<Block> source) {
     appointments = source;
@@ -35,18 +37,50 @@ class StudySessionSource extends CalendarDataSource {
 
 
 
-List<Block> _getDataSource() {
+List<Block> _getDataSource(user) {
   List<Block> meetings = <Block>[];
 
-  final course1 = Course("course1", 2, 15, 3);
-  final block1 = Block(DateTime(2021,5,4,15),DateTime(2021,5,4,17),course1,secondaryColor, true);
+  // print(user.plannyng);
+  //
+  // if(user.plannyng.isEmpty == false) {
+  //   print("Test");
+  //   for (var i = 0; i< user.plannyng.length; i++) {
+  //     print("AM " + i.toString());
+  //     print(user.plannyng[0].am);
+  //     print("PM " + i.toString());
+  //     print(user.plannyng[0].pm);
+  //
+  //   }
+  // }
 
-  meetings.add(block1);
+  meetings = user.planplannyng();
+  // print("Meetings");
+  // print(meetings);
+
+
+
+
+  // final course1 = Course("course1", 2, 15, 3);
+  // final block1 = Block(DateTime(2021,5,4,15),DateTime(2021,5,4,17),course1,secondaryColor, true);
+  //
+  // meetings.add(block1);
 
   return meetings;
 }
 
-class CalendarComponent extends StatelessWidget {
+class CalendarComponent extends StatefulWidget {
+  User user;
+  CalendarComponent({ @required this.user, Key key,}) : super(key:key);
+
+  @override
+  _CalendarComponentState createState() => _CalendarComponentState(user);
+}
+
+
+class _CalendarComponentState extends State<CalendarComponent> {
+  User user;
+  _CalendarComponentState(this.user);
+
   @override
   Widget build(BuildContext context) {
     void calendarTapped(CalendarTapDetails calendarTapDetails) {
@@ -62,7 +96,7 @@ class CalendarComponent extends StatelessWidget {
       view: CalendarView.month,
       onTap: calendarTapped,
       firstDayOfWeek: 1,
-      dataSource: StudySessionSource(_getDataSource()),
+      dataSource: StudySessionSource(_getDataSource(user)),
       monthViewSettings: MonthViewSettings(
           showAgenda: true,
           appointmentDisplayMode: MonthAppointmentDisplayMode.appointment),

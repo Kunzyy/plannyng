@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:plannyng/Components/drawerComponent.dart';
 import 'package:plannyng/Screens/editProfile.dart';
+import 'package:plannyng/main.dart';
 
 import 'package:plannyng/database.dart';
 import 'package:plannyng/classes.dart';
@@ -10,14 +11,16 @@ import 'package:plannyng/functionsWidgets.dart';
 import '../Constants.dart';
 
 class Profile extends StatelessWidget {
+  User user;
+  Profile({ @required this.user, Key key,}) : super(key:key);
+
   @override
   Widget build(BuildContext context) {
 
-    User user = getUser();
     List<List> listes = user.listeStrings();
 
     return Scaffold(
-      drawer: DrawerComponent(),
+      drawer: DrawerComponent(user: user),
       appBar: AppBar(
           title: Text(
               "Mon profil"

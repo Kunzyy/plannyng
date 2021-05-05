@@ -115,7 +115,6 @@ final kFirstDay = DateTime.utc(2015, 01, 01);
 final kLastDay = DateTime.utc(2040, 12, 31);
 
 const listeDrawer = ["Accueil", "Mon Profil", "Planifier une session", "Déconnexion"];
-var listeRedirection = [Home(), Profile(), PlanSess(), Login()];
 
 var listeCours = ["Analyse 2", "Algèbre 2", "Mecara Q2", "Physique Q2", "Chimie Orga", "Info", "Envi", "Ecopol", "Anglais"];
 var heuresCoursTheory = [14, 10, 14, 14, 14, 3, 5, 5, 5];
