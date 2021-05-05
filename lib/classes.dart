@@ -13,7 +13,7 @@ class ProgException implements Exception {
 }
 
 class NotificationHelper {
-  static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
+  static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
   static final android = new AndroidInitializationSettings('@mipmap/ic_launcher');
   static final iOS = new IOSInitializationSettings();
   static final initSetttings = new InitializationSettings(android, iOS);
@@ -46,13 +46,13 @@ class NotificationHelper {
   static final platform = new NotificationDetails(_androidNotificationDetails, _iOSNotificationDetails);
   static Future<void> scheduleNotifBlock(Block block) async {
     print("hello notif");
-    //await flutterLocalNotificationsPlugin.show(
-    //    1, 'New Tutorial', 'Local Notification', platform,
-    //    payload: 'AndroidCoding.in');
+    await flutterLocalNotificationsPlugin.show(
+        1, 'New Tutorial', 'Local Notification', platform,
+        payload: 'AndroidCoding.in');
 
-    await flutterLocalNotificationsPlugin.schedule(
-        0, 'Test 1', 'Test 2',new DateTime.now().add(const Duration(seconds: 30)) ,platform,
-        payload: 'Test 3');
+    //await flutterLocalNotificationsPlugin.schedule(
+    //    0, 'Test 1', 'Test 2',DateTime.now().add(const Duration(seconds: 5)) ,platform,
+    //    payload: 'Test 3');
 
   }
   static Future<void> cancelNotif(int id) async {
@@ -92,7 +92,6 @@ class Progression {
 }
 
 class Block {
-  static int totalId;
   Course course;
   int id;
   DateTime start;
@@ -189,6 +188,8 @@ class User {
                   j.time_left_theory = 0;
                 }
               }
+              j.prog_exo = int(100*j.time_left_exo / j.course.hours_exo);
+              j.prog_theory = int(100*j.time_left_theory / j.course.hours_theory);
             }
           });
         }
@@ -222,11 +223,14 @@ class User {
                   j.time_left_theory = 0;
                 }
               }
+              j.prog_exo = int(100*j.time_left_exo / j.course.hours_exo);
+              j.prog_theory = int(100*j.time_left_theory / j.course.hours_theory);
             }
           });
         }
       });
     });
+
   }
 
   redoBlocks(Block block) {

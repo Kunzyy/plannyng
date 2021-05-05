@@ -50,12 +50,15 @@ List<Block> _getDataSource(user) {
   //   }
   // }
 
-  //meetings = user.planplannyng();
+  meetings = user.planplannyng();
 
   // print("Meetings");
   // print(meetings);
-  // Course cours = Course("test", 4, 4, 4, Colors.blue);
-  // meetings.add(Block(DateTime.now().add(Duration(minutes:1)), DateTime.now().add(Duration(minutes:10)), cours));
+  /*
+  Course cours = Course("test", 4, 4, 4, Colors.blue);
+  Block newblock = Block(DateTime.now().add(Duration(seconds:5)), DateTime.now().add(Duration(minutes:10)), cours);
+  NotificationHelper.scheduleNotifBlock(newblock);
+  meetings.add(newblock);*/
 
 
   // final course1 = Course("course1", 2, 15, 3);
