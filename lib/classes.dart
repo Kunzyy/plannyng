@@ -26,24 +26,16 @@ class NotificationHelper {
     tz.initializeDatabase([]);
   }
 
-  static Future onSelectNotification(String payload) {
-    debugPrint("payload : $payload");
-    showDialog(
-      builder: (_) => new AlertDialog(
-        title: new Text('Notification'),
-        content: new Text('$payload'),
-      ),
-    );
-  }
+
   static final _androidNotificationDetails = AndroidNotificationDetails(
     'channel id',
     'channel name',
     'channel description',
     priority: Priority.high,
-    importance: Importance.high
+    importance: Importance.max
   );
   static final _iOSNotificationDetails = new IOSNotificationDetails();
-  static final platform = new NotificationDetails(android: _androidNotificationDetails, iOS: _iOSNotificationDetails);
+  static final platform = new NotificationDetails(android: _androidNotificationDetails,iOS: _iOSNotificationDetails);
   static Future<void> scheduleNotifBlock(Block block) async {
     print("hello notif");
     //await flutterLocalNotificationsPlugin.show(
@@ -51,8 +43,8 @@ class NotificationHelper {
     //    payload: 'AndroidCoding.in');
 
     await flutterLocalNotificationsPlugin.schedule(
-       0, 'Test 1', 'Test 2',DateTime.now().add(const Duration(seconds: 5)) ,platform,
-        payload: 'Test 3',androidAllowWhileIdle: true);
+       block.id, 'Une séance d\'étude va démarrer', 'Le cours a étudier est: '+block.course.name,block.start ,platform,
+        payload: 'Le cours a étudier est: '+block.course.name,androidAllowWhileIdle: true);
 
   }
   static Future<void> cancelNotif(int id) async {
