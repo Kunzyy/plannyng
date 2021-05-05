@@ -16,7 +16,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
   //On regarde le nombre d'heure à assigner par cours
   for(var i = 0; i < user.prog.length; i++){
 
-    if (user.prog[i].time_left_exo > avtime){
+    if (user.prog[i].time_left_exo * 60 > avtime){
 
       //Horaire impossible
       toassign_exo.add(avtime);
@@ -26,11 +26,11 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
     else{
 
       //Possible, on décompte du temps dispo et on rajoute dans la liste
-      toassign_exo.add(user.prog[i].time_left_exo);
-      avtime -= user.prog[i].time_left_exo;
+      toassign_exo.add(user.prog[i].time_left_exo * 60);
+      avtime -= user.prog[i].time_left_exo * 60;
     }
 
-    if (user.prog[i].time_left_theory > avtime){
+    if (user.prog[i].time_left_theory * 60> avtime){
 
       //Horaire impossible
       toassign_theory.add(avtime);
@@ -40,8 +40,8 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
     else{
 
       //Possible, on décompte du temps dispo et on rajoute dans la liste
-      toassign_theory.add(user.prog[i].time_left_theory);
-      avtime -= user.prog[i].time_left_theory;
+      toassign_theory.add(user.prog[i].time_left_theory * 60);
+      avtime -= user.prog[i].time_left_theory * 60;
     }
   }
   //Pour chaque jour, on remplit d'event sans se soucier du cours
