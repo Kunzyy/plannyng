@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:plannyng/Components/drawerComponent.dart';
-import 'package:plannyng/Screens/editProfile.dart';
-import 'package:plannyng/main.dart';
 
-import 'package:plannyng/database.dart';
 import 'package:plannyng/classes.dart';
 import 'package:plannyng/functionsWidgets.dart';
 
@@ -16,6 +13,8 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    print(user.name);
 
     List<List> listes = user.listeStrings();
     user.progUpdate();

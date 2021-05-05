@@ -316,7 +316,7 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                           print(timeOfDay(heureFin).toString());
 
                           if (_formSettingsKey.currentState.validate()) {
-                            confirmPlan(context, Home(user:user), user,toDateTime(dateDebut), toDateTime(dateFin), heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch);
+                            confirmPlan(context, Home(), user,toDateTime(dateDebut), toDateTime(dateFin), heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch);
                           }
                         },
                         child: Text("Valider les paramètres",

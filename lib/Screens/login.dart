@@ -6,12 +6,21 @@ import '../Constants.dart';
 import 'signIn.dart';
 import 'home.dart';
 
+
 class Login extends StatefulWidget {
+
+  int wantDisconnect;
+
+  Login({ @required this.wantDisconnect, Key key,}) : super(key:key);
   @override
-  _LoginState createState() => _LoginState();
+  _LoginState createState() => _LoginState(wantDisconnect);
 }
 
 class _LoginState extends State<Login> {
+
+  int wantDisconnect;
+  _LoginState(wantDisconnect);
+
   final dbHelper = DatabaseHelper.instance;
   final _formKey = GlobalKey<FormState>();
 
@@ -20,6 +29,13 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    //print(wantDisconnect);
+    if(wantDisconnect == 1) {
+      print(wantDisconnect);
+      _logoutUser(idLoggedIn);
+      idLoggedIn = null;
+    }
+
     return Scaffold(
       appBar: AppBar(
           title: Text("Connexion"),
@@ -161,5 +177,10 @@ class _LoginState extends State<Login> {
     final id = await dbHelper.login(row);
     print('inserted row id: $id');
     return id;
+  }
+
+  Future<void> _logoutUser(int id) {
+
+    dbHelper.logout(id);
   }
 }

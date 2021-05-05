@@ -180,7 +180,7 @@ class _SignInState extends State<SignIn> {
                       ),
                       onPressed: () {
                         dynamic newRoute =
-                            MaterialPageRoute(builder: (context) => Login());
+                            MaterialPageRoute(builder: (context) => Login(wantDisconnect: 1));
                         Navigator.pushReplacement(context, newRoute);
                       },
                       child: Text("Je me connecte !"),
@@ -202,7 +202,7 @@ class _SignInState extends State<SignIn> {
       DatabaseHelper.columnMail : mail,
       DatabaseHelper.columnPassword: password
     };
-    final id = await dbHelper.insert(row);
+    final id = await dbHelper.insertUser(row);
     print('inserted row id: $id');
   }
 }

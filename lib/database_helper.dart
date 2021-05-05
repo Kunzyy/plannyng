@@ -1,8 +1,13 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
+
+import 'package:plannyng/Constants.dart';
+import 'package:plannyng/classes.dart';
 
 class DatabaseHelper {
 
@@ -24,6 +29,7 @@ class DatabaseHelper {
   static final columnAnnee = 'annee_etude';
   static final columnMail = 'mail';
   static final columnPassword = 'password';
+  static final isConnected = 'isConnected';
   static final hourPerDay = 'hourPerDay';
   static final nbrePause = 'nbrePause';
   static final durPause = 'durPause';
@@ -36,7 +42,8 @@ class DatabaseHelper {
   static final coursTable = 'cours';
 
   static final repartition = 'repartition';
-  static final hours = 'hours';
+  static final hoursTheory = 'hours_theory';
+  static final hoursExo = 'hours_exo';
 
   // Progression table
   static final progressionTable = 'progression';
@@ -80,6 +87,7 @@ class DatabaseHelper {
 
   // SQL code to create the database table
   Future _onCreate(Database db, int version) async {
+
     await db.execute('''
           CREATE TABLE $usersTable (
           $columnId INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
@@ -88,6 +96,7 @@ class DatabaseHelper {
           $columnAnnee STRING,
           $columnMail STRING,
           $columnPassword STRING,
+          $isConnected INTEGER DEFAULT (0),
           $hourPerDay INTEGER,
           $nbrePause INTEGER,
           $durPause INTEGER,
@@ -96,13 +105,19 @@ class DatabaseHelper {
           $midiPause TIME,
           $lunchBegin TIME,
           $lunchFinish TIME);
-          
+          ''');
+
+    await db.execute('''
           CREATE TABLE $coursTable (
           $columnId INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
           $columnName STRING,
           $repartition INTEGER,
-          $hours INTEGER);
-          
+          $hoursTheory INTEGER,
+          $hoursExo INTEGER,
+          $color INTEGER);
+          ''');
+
+    await db.execute('''
           CREATE TABLE $progressionTable (
           $columnId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
           $columnIdUsers INTEGER REFERENCES users ($columnId) ON DELETE CASCADE NOT NULL,
@@ -111,7 +126,9 @@ class DatabaseHelper {
           $progTheorie INTEGER,
           $progExo INTEGER,
           $interest INTEGER);
-        
+          ''');
+
+    await db.execute('''
           CREATE TABLE plannyngBlock (
           $columnId INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
           $columnIdProg INTEGER REFERENCES progression ($columnId) ON DELETE CASCADE NOT NULL,
@@ -120,6 +137,33 @@ class DatabaseHelper {
           $finish TIME,
           $color STRING);
           ''');
+
+    //Insert one user
+    Map<String, dynamic> tmpUserRow = {
+      columnName: "Agathe Moineau",
+      columnMail: "agathe@moineau.be",
+      columnPassword : "Password",
+      isConnected: 1
+    };
+
+    final id = await db.insert(usersTable, tmpUserRow);
+    print('Remplissage préalable de la db ; inserted first id: $id and insert courses');
+
+    //Insert des cours
+    int n = listeCours.length;
+    for(int i = 0;i<n;i++){
+      Map<String, dynamic> tmpCourseRow = {
+        columnName : listeCours[i],
+        repartition : repartCours[i],
+        hoursTheory: heuresCoursTheory[i],
+        hoursExo: heuresCoursExo[i],
+        color: couleurCours[i]
+      };
+      await db.insert(coursTable, tmpCourseRow);
+    }
+    /*
+    print("Voici les cours");
+    print(await db.query(coursTable));*/
   }
 
   // Helper methods
@@ -127,7 +171,7 @@ class DatabaseHelper {
   // Inserts a row in the database where each key in the Map is a column name
   // and the value is the column value. The return value is the id of the
   // inserted row.
-  Future<int> insert(Map<String, dynamic> row) async {
+  Future<int> insertUser(Map<String, dynamic> row) async {
     Database db = await instance.database;
     return await db.insert(usersTable, row);
   }
@@ -136,8 +180,48 @@ class DatabaseHelper {
     Database db = await instance.database;
     String mail = row[columnMail];
     String password = row[columnPassword];
+
     final id = Sqflite.firstIntValue(await db.rawQuery(
         'SELECT $columnId FROM $usersTable WHERE $columnMail = "$mail" AND $columnPassword = "$password"'));
+
+    await db.rawQuery(
+        'UPDATE $usersTable SET $isConnected = 1 WHERE $columnId = "$id"');
+
     return id;
+  }
+
+  Future<void> logout(int id) async {
+    Database db = await instance.database;
+    db.rawQuery(
+        'UPDATE $usersTable SET $isConnected = 0 WHERE $columnId = "$id"');
+  }
+
+  Future<int> checkSomeoneIsConnected() async{
+    Database db = await instance.database;
+
+    final listUsersConnected = await db.query(usersTable, where: '$isConnected IN (?)', whereArgs: [1]);
+
+    if(listUsersConnected.length == 1)
+      return listUsersConnected[0][columnId];
+    else
+      return null;
+  }
+
+  Future<User> getUser(int id) async {
+    Database db = await instance.database;
+    final tmpUserInfos = await db.query(usersTable, where: '$columnId IN (?)', whereArgs: [id]);
+    final userInfos = tmpUserInfos[0];
+
+    final courses = await db.query(coursTable);
+    List<Progression> coursList = [];
+    for (final course in courses) {
+      Color tmpColor = Color(course[color]);
+      Course tmp = Course(course[columnName], course[repartition], course[hoursTheory], course[hoursExo], tmpColor);
+      Progression progtmp = Progression(tmp);
+      coursList.add(progtmp);
+    }
+
+    User user = User(userInfos[columnName], userInfos[columnPassword], coursList);
+    return user;
   }
 }

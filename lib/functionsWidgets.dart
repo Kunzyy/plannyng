@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'classes.dart';
 import 'package:plannyng/Constants.dart';
 import 'assignation.dart';
-import 'database.dart';
-import 'package:plannyng/Screens/profile.dart';
 
 createCardPlanSess(String texte) {
   return Padding(
