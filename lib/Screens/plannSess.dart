@@ -116,7 +116,7 @@ class _PlanSessState extends State<PlanSess> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formDatesKey.currentState.validate()) {
-                        confirmPlan(context, listeRedirection[0], dateDebut, dateFin, heureJourOpti, heureDebutOpti, heureFinOpti, nombrePausesOpti, dureePausesOpti, heureDebutLunchOpti, heureFinLunchOpti);
+                        confirmPlan(context, listeRedirection[0], toDateTime(dateDebut), toDateTime(dateFin), heureJourOpti, heureDebutOpti, heureFinOpti, nombrePausesOpti, dureePausesOpti, heureDebutLunchOpti, heureFinLunchOpti);
                       }
                     },
                     child: Text("Planning optimisé",

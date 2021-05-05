@@ -12,7 +12,3 @@ User getUser() {
   User user = User("Agathe Moineau", "Password", coursList);
   return user;
 }
-
-DateTime toDateTime(String date) {
-  return DateTime.parse(date);
-}

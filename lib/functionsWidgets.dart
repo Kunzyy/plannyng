@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:date_time_picker/date_time_picker.dart';
-
+import 'classes.dart';
 import 'package:plannyng/Constants.dart';
+import 'assignation.dart';
+import 'database.dart';
+import 'package:plannyng/Screens/profile.dart';
 
 createCardPlanSess(String texte) {
   return Padding(
@@ -61,23 +63,26 @@ redirect(context, newContext, [bool replacement]) {
   }
 }
 
-calculateAndRedirect(context, newContext, dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch, [bool replacement]) {
+calculateAndRedirect(context, newContext, dateDebut, dateFin, settings, [bool replacement]) {
   // Calcul du planning
-  print(dateDebut);
-  print(dateFin);
-  print(heureJour);
-  print(heureDebut);
-  print(heureFin);
-  print(nombrePauses);
-  print(dureePauses);
-  print(heureDebutLunch);
-  print(heureFinLunch);
+  User user = getUser();
+  createPlannyng(user, dateDebut, dateFin, settings);
 
   // Actualisation du Home
   redirect(context, newContext, true);
 }
 
 Future<void> confirmPlan(context, newContext, dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch) async {
+  Settings settings = Settings();
+
+  settings.hourperday = heureJour;
+  settings.start = toToD(heureDebut);
+  settings.finish = toToD(heureFin);
+  settings.nbrbreak = nombrePauses;
+  settings.durbreak = dureePauses;
+  settings.lunchbegin = toToD(heureDebutLunch);
+  settings.lunchend = toToD(heureFinLunch);
+
   return showDialog<void>(
     context: context,
     barrierDismissible: true,
@@ -92,7 +97,7 @@ Future<void> confirmPlan(context, newContext, dateDebut, dateFin, heureJour, heu
           ),
           TextButton(
             child: Text('Valider'),
-            onPressed: () => calculateAndRedirect(context, newContext, dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch,),
+            onPressed: () => calculateAndRedirect(context, newContext, dateDebut, dateFin, settings),
           )
         ],
       );
@@ -104,4 +109,14 @@ timeOfDay(String time) {
   List<String> timeToList = time.split(":");
   int minInDay = 60*int.parse(timeToList[0]) + int.parse(timeToList[1]);
   return minInDay;
+}
+
+DateTime toDateTime(String date) {
+  return DateTime.parse(date);
+}
+
+TimeOfDay toToD(String time) {
+  List<String> timeToList = time.split(":");
+  TimeOfDay ToD = TimeOfDay(hour: int.parse(timeToList[0]), minute: int.parse(timeToList[1]));
+  return ToD;
 }

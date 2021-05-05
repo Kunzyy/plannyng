@@ -6,11 +6,11 @@ import 'package:plannyng/functionsWidgets.dart';
 
 import '../Constants.dart';
 
-double heureJour = 0.0;
+int heureJour = 0;
 String heureDebut = "00:00";
 String heureFin = "24:00";
 int nombrePauses = 0;
-double dureePauses = 0.0;
+int dureePauses = 0;
 String heureDebutLunch = "00:00";
 String heureFinLunch = "24:00";
 
@@ -59,7 +59,7 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                                   errorMaxLines: 2,
                                 ),
                                 keyboardType: TextInputType.number,
-                                onChanged: (val) => setState(() {heureJour = double.parse(val);}),
+                                onChanged: (val) => setState(() {heureJour = int.parse(val);}),
                                 validator: (val) {
                                   if (val == null || val.isEmpty) {
                                     return "Veuillez remplir ce champ";
@@ -197,7 +197,7 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                                 ),
 
                                 keyboardType: TextInputType.number,
-                                onChanged: (val) => setState(() {dureePauses = double.parse(val);}),
+                                onChanged: (val) => setState(() {dureePauses = int.parse(val);}),
                                 validator: (val) {
                                   if (val == null || val.isEmpty) {
                                     return "Veuillez remplir ce champ";
@@ -298,7 +298,7 @@ class _PlanSessSettingsState extends State<PlanSessSettings> {
                           print(timeOfDay(heureFin).toString());
 
                           if (_formSettingsKey.currentState.validate()) {
-                            confirmPlan(context, listeRedirection[0], dateDebut, dateFin, heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch);
+                            confirmPlan(context, listeRedirection[0], toDateTime(dateDebut), toDateTime(dateFin), heureJour, heureDebut, heureFin, nombrePauses, dureePauses, heureDebutLunch, heureFinLunch);
                           }
                         },
                         child: Text("Valider les paramètres",

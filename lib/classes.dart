@@ -5,6 +5,11 @@ class ProgException implements Exception {
   ProgException(this.cause);
 }
 
+class ProgException implements Exception {
+  String cause;
+  ProgException(this.cause);
+}
+
 class Course {
   String name;
   int repartition;
@@ -28,7 +33,10 @@ class Progression {
   int prog_exo;
   int prog_theory;
   int interest;
-  Progression(this.course, [this.time_left_exo, this.time_left_theory, this.prog_exo, this.prog_theory, this.interest]){
+  Progression(this.course, [this.prog_exo, this.prog_theory, this.interest]){
+    this.time_left_exo = this.course.hours_exo;
+    this.time_left_theory = this.course.hours_theory;
+
     //
   }
 }
@@ -48,6 +56,10 @@ class Block {
 class Day{
   List<Block> am;
   List<Block> pm;
+  Day() {
+    this.am = [];
+    this.pm = [];
+  }
 }
 
 class User {
@@ -57,7 +69,7 @@ class User {
   List<Day> plannyng;
 
   User(this.name, this.passwordhash, this.prog) {
-    // Code if needed.
+    this.plannyng = [];
   }
 
   listeStrings() {

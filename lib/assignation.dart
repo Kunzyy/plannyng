@@ -5,12 +5,12 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
 
   int duration = end.difference(beginning).inDays;
   int avtime = (settings.hourperday * duration) * 60;
-  List<int> toassign_exo;
-  List<int> toassign_theory;
+  List<int> toassign_exo = [];
+  List<int> toassign_theory = [];
   bool warning = false;
 
   //On regarde le nombre d'heure à assigner par cours
-  for(var i = 0; i <= user.prog.length; i++){
+  for(var i = 0; i < user.prog.length; i++){
 
     if (user.prog[i].time_left_exo > avtime){
 
@@ -41,7 +41,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
     }
   }
   //Pour chaque jour, on remplit d'event sans se soucier du cours
-  for(var i = 0; i <= duration; i++){
+  for(var i = 0; i < duration; i++){
     Day tmpday = Day();
     DateTime actualday = beginning.add(Duration(days: i));
     DateTime tmpbegin = new DateTime(actualday.year, actualday.month, actualday.day, settings.start.hour, settings.start.minute);
@@ -73,7 +73,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
   //On assigne les cours aux events et on décrémente la valeur à assigner jusqu'à ne plus rien avoir à assigner
   for(var i =0; i < user.plannyng.length; i++){
     Course morningcourse = Course("none", 1, 1, 1);
-    for (var p = 0; p <= user.prog.length; p++){
+    for (var p = 0; p < user.prog.length; p++){
       if (toassign_exo[p] > 0){
         user.plannyng[i].am.forEach((element){
           element.course = user.prog[p].course;
@@ -84,7 +84,7 @@ void createPlannyng(User user, DateTime beginning, DateTime end, Settings settin
         break;
       }
     }
-    for (var p = 0; p <= user.prog.length; p++){
+    for (var p = 0; p < user.prog.length; p++){
       if ((toassign_theory[p] > 0) && (user.prog[p].course != morningcourse)){
         user.plannyng[i].pm.forEach((element){
           element.course = user.prog[p].course;

@@ -14,9 +14,7 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
 
     User user = getUser();
-    print(user.name);
-
-    List<List> listes = getUser().listeStrings();
+    List<List> listes = user.listeStrings();
 
     return Scaffold(
       drawer: DrawerComponent(),

@@ -15,11 +15,11 @@ const otherColor = Color(0xff936DD7);
 
 // Paramètres Opti
 
-double heureJourOpti = 10.0;
+int heureJourOpti = 10;
 String heureDebutOpti = '08:00';
 String heureFinOpti = '20:00';
-var nombrePausesOpti = 10;
-double dureePausesOpti = 5.0;
+int nombrePausesOpti = 10;
+int dureePausesOpti = 5;
 String heureDebutLunchOpti = '12:30';
 String heureFinLunchOpti = '13:30';
 
