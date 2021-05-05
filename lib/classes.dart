@@ -105,8 +105,8 @@ class Block {
     }
     else {
       this.background = primaryColor;
-
     }
+    done = false;
   }
   setCourse (course) {
     this.course = course;
